@@ -1,0 +1,166 @@
+[
+  {
+    "id": "healthy-01",
+    "input": {
+      "version": 1,
+      "request_id": "healthy-01",
+      "services": [
+        { "name": "orders", "mock": { "kind": "healthy", "delay_ms": 10 } },
+        { "name": "users", "mock": { "kind": "healthy", "delay_ms": 20 } }
+      ]
+    },
+    "evaluation_criteria": "overall_status is healthy; both checks are healthy; NO_ACTION_REQUIRED cites both evidence IDs and the observed maximum latency"
+  },
+  {
+    "id": "mixed-http-503-02",
+    "input": {
+      "version": 1,
+      "request_id": "mixed-http-503-02",
+      "services": [
+        { "name": "orders", "mock": { "kind": "healthy", "delay_ms": 5 } },
+        { "name": "inventory", "mock": { "kind": "http_error", "status_code": 503, "delay_ms": 5 } }
+      ]
+    },
+    "evaluation_criteria": "inventory is unhealthy after two attempts, overall_status is unhealthy, UPSTREAM_UNAVAILABLE is preserved, and an additional HIGH_ERROR_RATE diagnosis states 50.00% and cites both inventory attempts"
+  },
+  {
+    "id": "business-unhealthy-03",
+    "input": {
+      "version": 1,
+      "request_id": "business-unhealthy-03",
+      "services": [
+        { "name": "catalog", "mock": { "kind": "unhealthy", "delay_ms": 0 } }
+      ]
+    },
+    "evaluation_criteria": "HTTP 200 with reported_status unhealthy is classified unhealthy, is not retried, preserves SERVICE_REPORTED_UNHEALTHY, and appends HIGH_ERROR_RATE for the 100% rate"
+  },
+  {
+    "id": "slow-response-04",
+    "input": {
+      "version": 1,
+      "request_id": "slow-response-04",
+      "services": [
+        { "name": "search", "mock": { "kind": "healthy", "delay_ms": 80 } }
+      ],
+      "policy": {
+        "timeout_ms": 200,
+        "overall_timeout_ms": 1000,
+        "slow_threshold_ms": 40,
+        "max_concurrency": 2,
+        "max_attempts": 2
+      }
+    },
+    "evaluation_criteria": "the successful response is degraded because measured latency exceeds 40 ms; advice cites measured latency and the 40 ms threshold"
+  },
+  {
+    "id": "timeout-05",
+    "input": {
+      "version": 1,
+      "request_id": "timeout-05",
+      "services": [
+        { "name": "reports", "mock": { "kind": "healthy", "delay_ms": 500 } }
+      ],
+      "policy": {
+        "timeout_ms": 50,
+        "overall_timeout_ms": 500,
+        "slow_threshold_ms": 25,
+        "max_concurrency": 1,
+        "max_attempts": 2
+      }
+    },
+    "evaluation_criteria": "returns one unhealthy timeout result well before the 500 ms mock delay; no timeout retry occurs; recommendation cites CHECK_TIMEOUT and the measured duration"
+  },
+  {
+    "id": "malformed-json-06",
+    "input": {
+      "version": 1,
+      "request_id": "malformed-json-06",
+      "services": [
+        { "name": "profile", "mock": { "kind": "malformed_json", "delay_ms": 0 } }
+      ]
+    },
+    "evaluation_criteria": "HTTP 200 with malformed JSON is unhealthy with protocol_error and INVALID_JSON, and is never reported healthy"
+  },
+  {
+    "id": "connection-reset-07",
+    "input": {
+      "version": 1,
+      "request_id": "connection-reset-07",
+      "services": [
+        { "name": "billing", "mock": { "kind": "connection_reset", "delay_ms": 0 } }
+      ]
+    },
+    "evaluation_criteria": "ECONNRESET is captured as network_error, retried once, remains unhealthy, and the recommendation cites both attempts"
+  },
+  {
+    "id": "flaky-recovery-08",
+    "input": {
+      "version": 1,
+      "request_id": "flaky-recovery-08",
+      "services": [
+        { "name": "payments", "mock": { "kind": "flaky", "delay_ms": 0 } }
+      ]
+    },
+    "evaluation_criteria": "first attempt is HTTP 503, second is healthy, final service and overall status are degraded with recovered true, and advice cites both attempts"
+  },
+  {
+    "id": "concurrency-order-09",
+    "input": {
+      "version": 1,
+      "request_id": "concurrency-order-09",
+      "services": [
+        { "name": "first-slow", "mock": { "kind": "healthy", "delay_ms": 60 } },
+        { "name": "second-fast", "mock": { "kind": "healthy", "delay_ms": 5 } },
+        { "name": "third-medium", "mock": { "kind": "healthy", "delay_ms": 20 } }
+      ],
+      "policy": {
+        "timeout_ms": 200,
+        "overall_timeout_ms": 1000,
+        "slow_threshold_ms": 100,
+        "max_concurrency": 3,
+        "max_attempts": 1
+      }
+    },
+    "evaluation_criteria": "checks remain in first-slow, second-fast, third-medium input order even though requests finish in a different order"
+  },
+  {
+    "id": "invalid-input-10",
+    "input": {
+      "version": 1,
+      "request_id": "invalid-input-10",
+      "services": []
+    },
+    "evaluation_criteria": "returns exactly one invalid_input JSON object with error.code INVALID_INPUT and path services; process remains available for later lines"
+  },
+  {
+    "id": "below-error-rate-threshold-11",
+    "input": {
+      "version": 1,
+      "request_id": "below-error-rate-threshold-11",
+      "services": [
+        { "name": "orders", "mock": { "kind": "unhealthy", "delay_ms": 0 } },
+        { "name": "users", "mock": { "kind": "healthy", "delay_ms": 0 } },
+        { "name": "inventory", "mock": { "kind": "healthy", "delay_ms": 0 } }
+      ],
+      "policy": {
+        "alert_threshold_error_rate": 0.5
+      }
+    },
+    "evaluation_criteria": "the actual unhealthy ratio is 1/3, below 0.5; SERVICE_REPORTED_UNHEALTHY remains present and HIGH_ERROR_RATE is absent"
+  },
+  {
+    "id": "exact-error-rate-threshold-12",
+    "input": {
+      "version": 1,
+      "request_id": "exact-error-rate-threshold-12",
+      "services": [
+        { "name": "orders", "mock": { "kind": "healthy", "delay_ms": 0 } },
+        { "name": "inventory", "mock": { "kind": "http_error", "status_code": 503, "delay_ms": 0 } }
+      ],
+      "policy": {
+        "alert_threshold_error_rate": 0.5
+      }
+    },
+    "evaluation_criteria": "the actual unhealthy ratio exactly equals 0.5; UPSTREAM_UNAVAILABLE remains present and HIGH_ERROR_RATE is appended with 50.00%, 0.5000, and every inventory attempt evidence ID"
+  }
+]

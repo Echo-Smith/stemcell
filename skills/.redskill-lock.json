@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "skills": {
+    "ai-resume-assistant": {
+      "name": "ai-resume-assistant",
+      "version": "1.0.0",
+      "source": "redskill",
+      "install_dir": "/Users/marshecho/Desktop/workforlife/skills/ai-resume-assistant",
+      "installed_at": "1784881187617",
+      "sha256": "10d68212b88b666ded20c89d84660eb303b3b61b54e6b276a5c1038d113d9f9c"
+    }
+  }
+}

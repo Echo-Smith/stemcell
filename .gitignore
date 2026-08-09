@@ -1,0 +1,47 @@
+# macOS and editor noise
+.DS_Store
+**/.DS_Store
+.idea/
+.vscode/
+
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Dependencies and generated build output
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+build/
+**/build/
+coverage/
+**/coverage/
+__pycache__/
+**/__pycache__/
+*.pyc
+
+# Temporary and scraped material
+tmp/
+.firecrawl/
+
+# Sensitive/raw career evidence and third-party source material
+季度考核评分表/
+商业化产品/
+other-resume/
+resume/feedback/legacy-system-ai/
+
+# Generated binary resume deliverables and packages
+output/docx/
+output/pdf/
+outputs/
+*.zip
+*.tar.gz
+
+# Release artifacts
+ericdocmic-main-site/release/
+mosiyi-portfolio/mosiyi-portfolio/
+

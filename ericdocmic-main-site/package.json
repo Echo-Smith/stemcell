@@ -1,0 +1,8 @@
+{
+  "name": "ericdocmic-main-site",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "export:1panel": "node scripts/export-1panel.mjs"
+  }
+}

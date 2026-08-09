@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>莫思意｜模型应用产品经理（AI Memory &amp; Agent）</title>
+  <style>
+    @page { size: A4; margin: 0; }
+    :root {
+      --ink: #17201f;
+      --muted: #5d6966;
+      --soft: #8b9592;
+      --line: #d7deda;
+      --paper: #fffefb;
+      --canvas: #efeee9;
+      --tint: #eef4f1;
+      --accent: #1d6558;
+      --accent-dark: #154b42;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    html, body { width: 210mm; min-height: 297mm; background: var(--canvas); }
+    body {
+      color: var(--ink);
+      font-family: "Avenir Next", "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", sans-serif;
+      font-size: 8.25pt;
+      line-height: 1.45;
+      text-rendering: geometricPrecision;
+    }
+    a { color: inherit; text-decoration: none; }
+    .page {
+      position: relative;
+      width: 210mm;
+      min-height: 297mm;
+      padding: 8.5mm 11mm 7.5mm;
+      overflow: hidden;
+      background: linear-gradient(90deg, var(--accent) 0 3.2mm, transparent 3.2mm), var(--paper);
+    }
+    .page::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 50mm;
+      height: 1.8mm;
+      background: var(--accent);
+    }
+    .header {
+      position: relative;
+      min-height: 35mm;
+      padding: 1mm 31mm 5.2mm 0;
+      border-bottom: 0.35mm solid var(--ink);
+    }
+    .name-row {
+      display: flex;
+      align-items: baseline;
+      gap: 3mm;
+      margin-bottom: 1.8mm;
+    }
+    h1 { font-size: 22.5pt; font-weight: 760; letter-spacing: .08em; line-height: 1; }
+    .target { color: var(--muted); font-size: 9pt; font-weight: 680; }
+    .contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6mm 3.2mm;
+      color: var(--muted);
+      font-size: 7.2pt;
+      font-variant-numeric: tabular-nums;
+    }
+    .contact a { border-bottom: .2mm solid #bcc7c2; }
+    .photo-frame {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 25mm;
+      height: 30mm;
+      padding: 1.1mm;
+      border: .25mm solid #cbd3cf;
+      border-radius: 2.2mm;
+      background: #fff;
+    }
+    .photo { display: block; width: 100%; height: 100%; border-radius: 1.3mm; object-fit: cover; object-position: center 24%; }
+    .positioning {
+      display: grid;
+      grid-template-columns: 23mm 1fr;
+      gap: 3.6mm;
+      margin: 4mm 0 3.7mm;
+      padding: 3mm 3.8mm;
+      border-left: 1.15mm solid var(--accent);
+      background: var(--tint);
+    }
+    .meta-label, .section-index, .date {
+      font-family: "SFMono-Regular", "JetBrains Mono", "Menlo", monospace;
+      font-variant-numeric: tabular-nums;
+    }
+    .meta-label {
+      padding-top: .3mm;
+      color: var(--accent);
+      font-size: 6.6pt;
+      font-weight: 800;
+      letter-spacing: .11em;
+    }
+    .positioning p { font-size: 8.55pt; font-weight: 520; line-height: 1.52; }
+    .positioning strong { color: var(--accent-dark); font-weight: 760; }
+    .memory-thesis {
+      margin-top: 1.7mm;
+      color: #33413d;
+      font-size: 7.7pt;
+      line-height: 1.47;
+    }
+    .section { margin-top: 3.5mm; }
+    .section-heading {
+      display: grid;
+      grid-template-columns: 9mm 1fr;
+      align-items: baseline;
+      gap: 2mm;
+      margin-bottom: 2.1mm;
+    }
+    .section-index { color: var(--accent); font-size: 8.1pt; font-weight: 800; }
+    .section-title { font-size: 10.8pt; font-weight: 760; letter-spacing: .04em; }
+    .project-head, .experience-head, .education-line {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 4mm;
+      margin-bottom: .8mm;
+    }
+    .project-title, .experience-title { font-size: 9.05pt; font-weight: 760; }
+    .date { flex: 0 0 auto; color: var(--soft); font-size: 6.6pt; }
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .45mm 2.7mm;
+      margin-bottom: 1.5mm;
+      color: var(--muted);
+      font-size: 6.75pt;
+    }
+    .project-meta a { border-bottom: .2mm solid #c6d0cb; }
+    .path-list { list-style: none; }
+    .path-list li {
+      display: grid;
+      grid-template-columns: 19.5mm 1fr;
+      gap: 2.2mm;
+      margin-bottom: 1.15mm;
+    }
+    .path-list li:last-child { margin-bottom: 0; }
+    .path-tag { color: var(--accent-dark); font-size: 7.25pt; font-weight: 760; white-space: nowrap; }
+    .path-copy { color: #34413f; font-size: 7.6pt; line-height: 1.44; }
+    .secondary-project {
+      margin-top: 2.5mm;
+      padding-top: 2.2mm;
+      border-top: .25mm solid var(--line);
+    }
+    .secondary-list, .bullet-list { list-style: none; }
+    .secondary-list li, .bullet-list li {
+      position: relative;
+      color: #394643;
+      line-height: 1.39;
+    }
+    .secondary-list li {
+      margin-bottom: .8mm;
+      padding-left: 3mm;
+      font-size: 7.3pt;
+    }
+    .secondary-list li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 800;
+    }
+    .mini-project {
+      display: grid;
+      grid-template-columns: 49mm 1fr;
+      gap: 3.5mm;
+      margin-top: 1.6mm;
+      padding-top: 1.6mm;
+      border-top: .2mm dashed #ccd6d1;
+    }
+    .mini-title { font-size: 7.7pt; font-weight: 760; }
+    .mini-link {
+      display: inline-block;
+      margin-top: .45mm;
+      color: var(--accent);
+      font-family: "SFMono-Regular", "JetBrains Mono", monospace;
+      font-size: 6pt;
+      font-weight: 700;
+      border-bottom: .2mm solid #b9cbc5;
+    }
+    .mini-copy { color: #3b4745; font-size: 7.2pt; line-height: 1.43; }
+    .bullet-list li {
+      margin-bottom: 1mm;
+      padding-left: 3mm;
+      font-size: 7.4pt;
+    }
+    .bullet-list li::before {
+      content: "";
+      position: absolute;
+      top: 1.52mm;
+      left: .65mm;
+      width: 1.05mm;
+      height: 1.05mm;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .lower {
+      display: grid;
+      grid-template-columns: .92fr 1.08fr;
+      gap: 5mm;
+      margin-top: 3.2mm;
+      padding-top: 3mm;
+      border-top: .25mm solid var(--line);
+    }
+    .lower > section + section { padding-left: 4mm; border-left: .25mm solid var(--line); }
+    .compact-title { margin-bottom: 1.25mm; font-size: 9pt; font-weight: 760; }
+    .education-main { font-size: 7.9pt; font-weight: 720; }
+    .education-detail { margin-top: .8mm; color: var(--muted); font-size: 6.85pt; line-height: 1.42; }
+    .skills { list-style: none; }
+    .skills li { margin-bottom: .85mm; color: #384541; font-size: 7.15pt; line-height: 1.42; }
+    .skills strong { color: var(--accent-dark); font-weight: 760; }
+    @media screen {
+      body { padding: 12mm 0; }
+      .page { margin: 0 auto; box-shadow: 0 10mm 30mm rgba(20,30,28,.14); }
+    }
+    @media print {
+      html, body { background: #fff; }
+      body { padding: 0; }
+      .page { margin: 0; box-shadow: none; }
+      a { border-bottom: 0; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="header">
+      <div class="name-row">
+        <h1>莫思意</h1>
+        <div class="target">模型应用产品经理｜AI Memory &amp; Agent</div>
+      </div>
+      <div class="contact">
+        <span>19290865729</span>
+        <span>aodomosiyi@foxmail.com</span>
+        <span>杭州</span>
+        <a href="https://profile.ericdocmic.top">profile.ericdocmic.top</a>
+        <a href="https://github.com/Echo-Smith">github.com/Echo-Smith</a>
+      </div>
+      <div class="photo-frame"><img class="photo" src="个人头像.jpg" alt="莫思意头像"></div>
+    </header>
+
+    <section class="positioning" aria-label="个人概述">
+      <div class="meta-label">个人概述</div>
+      <div>
+        <p>2024 届新媒体技术本科，2024.11 至今在内容业务一线；个人发起并独立构建 <strong>AI 内容产品“笔润智谈”</strong>，完成真实流程调研、MVP 上线与用户反馈迭代。V1 覆盖 <strong>200+ 名体验用户</strong>，其中 53 名作者均完成真实写作任务；V2 已有 14 名用户、近 70 条完整任务样本。</p>
+        <p class="memory-thesis"><strong>Memory 判断：</strong>长期记忆应保存可追溯、可限定范围、可修正的用户偏好与关键决策，让 Agent 减少重复沟通，同时避免把一次反馈错误固化为全局规则。</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="project-title">
+      <div class="section-heading"><div class="section-index">01</div><h2 class="section-title" id="project-title">核心项目</h2></div>
+      <article>
+        <div class="project-head">
+          <h3 class="project-title">笔润智谈｜面向内容生产的 Memory &amp; Agent 协作产品</h3>
+          <time class="date">2026.03—至今</time>
+        </div>
+        <div class="project-meta">
+          <span>个人发起并独立构建｜V1 已进入内部内容生产流程，V2 内测中</span>
+          <a href="https://luminbuddy.ericdocmic.top">luminbuddy.ericdocmic.top</a>
+          <a href="https://github.com/Echo-Smith/luminbuddy-writing-agent-v2">GitHub / luminbuddy-writing-agent-v2</a>
+        </div>
+        <ol class="path-list">
+          <li><span class="path-tag">场景与版本</span><span class="path-copy">面向时评作者、编辑与内容运营，发现规范难复用、资料分散，以及生成后核验、个人视角、版本追踪和返工协作问题；先以 V1 验证写作、润色和批量查重，再演进为可追踪、可回退、可人工接管的 Agent 编辑部。</span></li>
+          <li><span class="path-tag">四层 Memory</span><span class="path-copy">以工作摘要、会话消息、长期偏好和实体关系组成四层记忆；按用户、来源、范围、置信度和生命周期治理，并提供 Markdown 与数据库导入 / 导出，使偏好可查看、可修正、可迁移。</span></li>
+          <li><span class="path-tag">双模式运行时</span><span class="path-copy">保留固定 Pipeline 保障关键步骤顺序，以 ReAct UnifiedAgent 按状态选择工具；设置取消、全局超时、Token 预算、断连暂停和连续 LLM 失败断路器，并以迭代上限避免无限循环。</span></li>
+          <li><span class="path-tag">Agent 编辑部</span><span class="path-copy">编排研究→写作→审校三 Agent，以数据库 Lease 防止重复执行，按信源、信息缺口、稿件结构与审校严重度动态路由；低质量任务有限重试后进入人工批准、退回或接管。</span></li>
+          <li><span class="path-tag">用户与迭代</span><span class="path-copy">V1 覆盖 200+ 名体验用户，其中 53 名作者完成真实任务；根据格式同质化反馈禁用模板化句式，根据价值取向差异引入个性化记忆。V2 截至 2026.07.31 有 14 名用户、近 70 条完整任务样本。</span></li>
+          <li><span class="path-tag">稳定性交付</span><span class="path-copy">重构批量查重的并发与失败兜底，完成 30 余次实际任务；单次处理 50 余人、每人 30 条语录文本，5 分钟内全部改写返回。</span></li>
+        </ol>
+      </article>
+
+      <article class="secondary-project">
+        <div class="project-head"><h3 class="project-title">HearHer 听见妈妈｜模型评测与安全边界</h3><time class="date">2026.06—2026.07</time></div>
+        <div class="project-meta">
+          <span>腾讯音乐 AI Hackathon 2 人团队｜产品规划、AI 能力设计、模型评测与 PWA 交付</span>
+          <a href="https://hearher.me">hearher.me</a>
+          <a href="https://github.com/Echo-Smith/HearHer-PWA">GitHub / HearHer-PWA</a>
+        </div>
+        <ul class="secondary-list">
+          <li>设计“状态输入—安全判断—受控推荐—真实播放—反馈沉淀”流程，以安全硬门槛、受控曲库和确定性规则约束歌曲选择，保留清晰的人机职责边界。</li>
+          <li>以 177 条音频和 30 条产品用例对比 4 款 ASR 与 4 款 LLM，完成 700+ 次调用；项目从 200+ 份提案中入围 14 项决赛作品。</li>
+        </ul>
+        <div class="mini-project">
+          <div><div class="mini-title">贝伴｜AI 订阅管理助手</div><a class="mini-link" href="https://subbuddy.ericdocmic.top">subbuddy.ericdocmic.top</a></div>
+          <p class="mini-copy">设计 Function Calling 协议处理订阅增删改查与支出查询；使用视觉模型提取支付截图字段，并对删除、金额修改和低置信结果保留人工确认。</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" aria-labelledby="experience-title">
+      <div class="section-heading"><div class="section-index">02</div><h2 class="section-title" id="experience-title">工作经历</h2></div>
+      <div class="experience-head"><h3 class="experience-title">杭州都市快报研学文化传播有限公司｜内容运营</h3><time class="date">2024.11—至今</time></div>
+      <ul class="bullet-list">
+        <li>负责小红书、今日头条、微博等 40 万粉级官方账号的选题、生产、分发和复盘，协调 30+ 本地 KOL/KOC，参与约 150 人素人号矩阵管理；从作者、编辑和运营反馈中梳理内容约束与协作问题。</li>
+        <li>将选题研究、资料检索、初稿、事实核验、平台适配和复盘拆为可委派步骤，持续维护个人 AI 协作 SOP，并把实际业务问题转化为笔润智谈的产品需求和版本任务。</li>
+        <li>使用飞书智能表格搭建话题获取、分类与数据看板，年度汇总 75 个话题、累计阅读量约 46.3 亿；使用 Python 清洗多平台数据，支持选题和阶段复盘。</li>
+        <li>参与内部 SaaS 上线前验收，围绕流程、字段和交互提交 6 项分级问题，整理复现路径与关键字段，协助开发团队在半小时内定位关键问题并完成核心功能验证。</li>
+      </ul>
+    </section>
+
+    <div class="lower">
+      <section aria-labelledby="education-title">
+        <h2 class="compact-title" id="education-title">教育背景</h2>
+        <div class="education-line"><div class="education-main">齐鲁工业大学｜新媒体技术（工科·计算机大类）｜本科</div><time class="date">2020.09—2024.06</time></div>
+        <p class="education-detail">相关课程：机器学习与模式识别、人工智能与深度学习、智能媒体传播、移动软件开发</p>
+      </section>
+      <section aria-labelledby="skills-title">
+        <h2 class="compact-title" id="skills-title">专业能力</h2>
+        <ul class="skills">
+          <li><strong>产品：</strong>业务流程调研、需求拆解、MVP、PRD、优先级判断、产品验收、用户反馈与版本迭代。</li>
+          <li><strong>Memory &amp; Agent：</strong>四层记忆、Pipeline / ReAct UnifiedAgent、RAG、多源检索、Function Calling、Human-in-the-loop、Decision Packet。</li>
+          <li><strong>评测治理：</strong>LLM-as-Judge、Badcase、信源核验、Token / 时延 / 人工介入、DB Trace、结构化日志、Prometheus 兼容指标。</li>
+          <li><strong>原型工程：</strong>Go、TypeScript / React、Python、PostgreSQL、REST API、WebSocket、MCP 客户端 / 进程内服务端原型、Docker、Git。</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

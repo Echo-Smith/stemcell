@@ -1,0 +1,5 @@
+{
+  "version": 1,
+  "runtime": "node22",
+  "command": ["node", "main.js"]
+}

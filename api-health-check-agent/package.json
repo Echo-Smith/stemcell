@@ -1,0 +1,21 @@
+{
+  "name": "api-health-check-agent",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Deterministic API health-check Agent with bounded timeouts and evidence-backed diagnoses.",
+  "engines": {
+    "node": ">=22 <23"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node main.js",
+    "test": "node --test tests/*.test.js",
+    "eval": "node main.js < evaluation/input.jsonl"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.0.0"
+  }
+}

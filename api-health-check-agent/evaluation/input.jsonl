@@ -1,0 +1,12 @@
+{"version":1,"request_id":"healthy-01","services":[{"name":"orders","mock":{"kind":"healthy","delay_ms":10}},{"name":"users","mock":{"kind":"healthy","delay_ms":20}}]}
+{"version":1,"request_id":"mixed-http-503-02","services":[{"name":"orders","mock":{"kind":"healthy","delay_ms":5}},{"name":"inventory","mock":{"kind":"http_error","status_code":503,"delay_ms":5}}]}
+{"version":1,"request_id":"business-unhealthy-03","services":[{"name":"catalog","mock":{"kind":"unhealthy","delay_ms":0}}]}
+{"version":1,"request_id":"slow-response-04","services":[{"name":"search","mock":{"kind":"healthy","delay_ms":80}}],"policy":{"timeout_ms":200,"overall_timeout_ms":1000,"slow_threshold_ms":40,"max_concurrency":2,"max_attempts":2}}
+{"version":1,"request_id":"timeout-05","services":[{"name":"reports","mock":{"kind":"healthy","delay_ms":500}}],"policy":{"timeout_ms":50,"overall_timeout_ms":500,"slow_threshold_ms":25,"max_concurrency":1,"max_attempts":2}}
+{"version":1,"request_id":"malformed-json-06","services":[{"name":"profile","mock":{"kind":"malformed_json","delay_ms":0}}]}
+{"version":1,"request_id":"connection-reset-07","services":[{"name":"billing","mock":{"kind":"connection_reset","delay_ms":0}}]}
+{"version":1,"request_id":"flaky-recovery-08","services":[{"name":"payments","mock":{"kind":"flaky","delay_ms":0}}]}
+{"version":1,"request_id":"concurrency-order-09","services":[{"name":"first-slow","mock":{"kind":"healthy","delay_ms":60}},{"name":"second-fast","mock":{"kind":"healthy","delay_ms":5}},{"name":"third-medium","mock":{"kind":"healthy","delay_ms":20}}],"policy":{"timeout_ms":200,"overall_timeout_ms":1000,"slow_threshold_ms":100,"max_concurrency":3,"max_attempts":1}}
+{"version":1,"request_id":"invalid-input-10","services":[]}
+{"version":1,"request_id":"below-error-rate-threshold-11","services":[{"name":"orders","mock":{"kind":"unhealthy","delay_ms":0}},{"name":"users","mock":{"kind":"healthy","delay_ms":0}},{"name":"inventory","mock":{"kind":"healthy","delay_ms":0}}],"policy":{"alert_threshold_error_rate":0.5}}
+{"version":1,"request_id":"exact-error-rate-threshold-12","services":[{"name":"orders","mock":{"kind":"healthy","delay_ms":0}},{"name":"inventory","mock":{"kind":"http_error","status_code":503,"delay_ms":0}}],"policy":{"alert_threshold_error_rate":0.5}}

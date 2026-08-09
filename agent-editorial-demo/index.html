@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="基于莫思意 AI Memory & Agent 定向简历事实构建的 Agent 编辑部机制演示。"
+    />
+    <title>Agent 编辑部｜AI Memory & Agent 机制演示</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">跳到演示内容</a>
+    <div class="top-rule" aria-hidden="true"></div>
+
+    <header class="masthead">
+      <a class="identity" href="#brief" aria-label="返回演示开头">
+        <span class="identity-mark">M</span>
+        <span>
+          <strong>莫思意 MOSEY</strong>
+          <small>MODEL APPLICATION PRODUCT</small>
+        </span>
+      </a>
+      <p class="masthead-title">Agent 编辑部 · 机制演示 / 2026</p>
+      <nav class="masthead-links" aria-label="外部链接">
+        <a href="https://profile.ericdocmic.top" target="_blank" rel="noreferrer">
+          作品集
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 17 17 7M8 7h9v9" />
+          </svg>
+        </a>
+        <a href="https://github.com/Echo-Smith/luminbuddy-writing-agent-v2" target="_blank" rel="noreferrer">
+          GitHub
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 17 17 7M8 7h9v9" />
+          </svg>
+        </a>
+      </nav>
+    </header>
+
+    <main id="main-content" class="page-shell">
+      <aside class="dispatch-rail" aria-label="演示目录">
+        <p class="rail-label">DESK MAP</p>
+        <nav>
+          <a href="#brief"><span>00</span>任务简报</a>
+          <a href="#workflow"><span>01</span>Agent 接力</a>
+          <a href="#memory"><span>02</span>Memory 生效</a>
+          <a href="#decision"><span>03</span>人工决策</a>
+        </nav>
+        <div class="rail-note">
+          <span class="rail-dot" aria-hidden="true"></span>
+          <p>本页为机制演示，任务状态不是线上运行日志。</p>
+        </div>
+      </aside>
+
+      <div class="content-column">
+        <section id="brief" class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <p class="eyebrow">LUMINBUDDY / EDITORIAL HARNESS</p>
+            <h1 id="hero-title">
+              可追踪、可回退、
+              <em>可人工接管</em>
+              的 Agent 编辑部
+            </h1>
+            <p class="hero-intro">
+              面向时评作者、编辑与日常内容运营场景，把研究、写作、审校编排为版本化协作流；
+              当信源、信息缺口、稿件结构或审校严重度触发门槛时，把决定交还给人。
+            </p>
+          </div>
+
+          <div class="hero-command">
+            <div class="command-meta">
+              <span>MECHANISM DEMO</span>
+              <span>LOCAL / NO BACKEND</span>
+            </div>
+            <p class="command-title">一次点击，跑完研究 → 写作 → 审校</p>
+            <p class="command-note">随后选择批准、退回或接管。演示不会发送数据，也不会调用模型。</p>
+            <div class="command-actions">
+              <button id="run-flow" class="button button-primary" type="button">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m8 5 11 7-11 7V5Z" />
+                </svg>
+                运行协作流
+              </button>
+              <button id="reset-demo" class="button button-quiet" type="button">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20 11a8 8 0 1 0-2.34 5.66M20 4v7h-7" />
+                </svg>
+                重置演示
+              </button>
+            </div>
+          </div>
+
+          <dl class="evidence-strip" aria-label="简历中的真实验证数据">
+            <div>
+              <dt>V1 体验用户</dt>
+              <dd>200<span>+</span></dd>
+            </div>
+            <div>
+              <dt>完成真实写作任务的作者</dt>
+              <dd>53<span>名</span></dd>
+            </div>
+            <div>
+              <dt>V2 内测用户</dt>
+              <dd>14<span>名</span></dd>
+            </div>
+            <div>
+              <dt>V2 完整任务样本</dt>
+              <dd>近 70<span>条</span></dd>
+            </div>
+          </dl>
+          <p class="as-of">数据口径来自当前定向简历，V2 截至 2026.07.31。</p>
+        </section>
+
+        <section id="workflow" class="work-section" aria-labelledby="workflow-title">
+          <header class="section-heading">
+            <div>
+              <p class="eyebrow">01 / VERSIONED HANDOFF</p>
+              <h2 id="workflow-title">不是三个聊天框，是一条可接管的交付链</h2>
+            </div>
+            <p>
+              Task、Artifact、Event、Decision 与 Transition 承载状态；
+              数据库 Lease 用于避免同一角色重复执行。
+            </p>
+          </header>
+
+          <div class="demo-disclaimer">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 8v5M12 17h.01" />
+            </svg>
+            <span>以下“公共事件评论稿”为机制演示样例，不代表真实用户内容或线上日志。</span>
+          </div>
+
+          <div class="workflow-board">
+            <article class="agent-card" data-agent="research">
+              <div class="agent-card-top">
+                <span class="agent-index">A/01</span>
+                <span class="agent-state" data-state-label>等待任务</span>
+              </div>
+              <svg class="agent-glyph" viewBox="0 0 48 48" aria-hidden="true">
+                <circle cx="21" cy="21" r="11" />
+                <path d="m29 29 10 10M15 21h12M21 15v12" />
+              </svg>
+              <p class="agent-kicker">RESEARCH AGENT</p>
+              <h3>研究</h3>
+              <p>执行查询规划与多源检索，检查信源、信息缺口和已核验事实。</p>
+              <div class="artifact">
+                <span>ARTIFACT</span>
+                <strong data-artifact>研究简报 · 待生成</strong>
+              </div>
+            </article>
+
+            <div class="handoff" aria-hidden="true">
+              <span></span>
+              <svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7" /></svg>
+            </div>
+
+            <article class="agent-card" data-agent="writer">
+              <div class="agent-card-top">
+                <span class="agent-index">A/02</span>
+                <span class="agent-state" data-state-label>等待上游</span>
+              </div>
+              <svg class="agent-glyph" viewBox="0 0 48 48" aria-hidden="true">
+                <path d="M12 36h24M15 31l3-12 15-8 4 4-8 15-12 3-2-2Z" />
+                <path d="m18 19 11 11" />
+              </svg>
+              <p class="agent-kicker">WRITING AGENT</p>
+              <h3>写作</h3>
+              <p>根据研究简报和记忆上下文生成内容，保留稿件结构与版本差异。</p>
+              <div class="artifact">
+                <span>ARTIFACT</span>
+                <strong data-artifact>初稿 · 等待研究</strong>
+              </div>
+            </article>
+
+            <div class="handoff" aria-hidden="true">
+              <span></span>
+              <svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7" /></svg>
+            </div>
+
+            <article class="agent-card" data-agent="review">
+              <div class="agent-card-top">
+                <span class="agent-index">A/03</span>
+                <span class="agent-state" data-state-label>等待上游</span>
+              </div>
+              <svg class="agent-glyph" viewBox="0 0 48 48" aria-hidden="true">
+                <path d="M13 10h22v28H13z" />
+                <path d="m18 25 4 4 8-10M18 15h12" />
+              </svg>
+              <p class="agent-kicker">REVIEW AGENT</p>
+              <h3>审校</h3>
+              <p>根据事实、结构与严重度路由；一般问题退回，严重问题进入人工裁决。</p>
+              <div class="artifact">
+                <span>ARTIFACT</span>
+                <strong data-artifact>审校报告 · 等待初稿</strong>
+              </div>
+            </article>
+          </div>
+
+          <div class="run-console" aria-label="协作流事件">
+            <div class="console-head">
+              <span>EVENT STREAM</span>
+              <span id="console-status">IDLE</span>
+            </div>
+            <ol id="event-log" aria-live="polite">
+              <li><time>00:00</time><span>等待运行机制演示</span></li>
+            </ol>
+          </div>
+        </section>
+
+        <section id="memory" class="memory-section" aria-labelledby="memory-title">
+          <header class="section-heading memory-heading">
+            <div>
+              <p class="eyebrow">02 / GOVERNED MEMORY</p>
+              <h2 id="memory-title">四层 Memory，各自回答不同的问题</h2>
+            </div>
+            <p>
+              记忆按用户、来源、适用范围、置信度和生命周期治理；
+              一次反馈不会直接固化为全局规则。
+            </p>
+          </header>
+
+          <div class="memory-workbench">
+            <div class="memory-tabs" role="tablist" aria-label="四层 Memory">
+              <button
+                id="tab-working"
+                class="memory-tab is-active"
+                type="button"
+                role="tab"
+                aria-selected="true"
+                aria-controls="memory-panel"
+                data-memory="working"
+              >
+                <span>01</span>
+                <strong>工作摘要</strong>
+                <small>当前任务怎么走到这里</small>
+              </button>
+              <button
+                id="tab-session"
+                class="memory-tab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="memory-panel"
+                data-memory="session"
+              >
+                <span>02</span>
+                <strong>会话消息</strong>
+                <small>这轮对话说过什么</small>
+              </button>
+              <button
+                id="tab-longterm"
+                class="memory-tab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="memory-panel"
+                data-memory="longterm"
+              >
+                <span>03</span>
+                <strong>长期偏好</strong>
+                <small>哪些反馈值得复用</small>
+              </button>
+              <button
+                id="tab-entity"
+                class="memory-tab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="memory-panel"
+                data-memory="entity"
+              >
+                <span>04</span>
+                <strong>实体关系网络</strong>
+                <small>人物与主题如何关联</small>
+              </button>
+            </div>
+
+            <article
+              id="memory-panel"
+              class="memory-panel"
+              role="tabpanel"
+              tabindex="0"
+              aria-labelledby="tab-working"
+            >
+              <div class="memory-panel-head">
+                <span id="memory-code">WORKING SUMMARY</span>
+                <span class="memory-live"><i aria-hidden="true"></i>IN CONTEXT</span>
+              </div>
+              <h3 id="memory-name">工作摘要</h3>
+              <p id="memory-purpose" class="memory-purpose">
+                保存当前任务的增量步骤摘要，支持压缩与 Token 控制，让下一位 Agent 知道任务如何走到这里。
+              </p>
+              <div class="memory-effect">
+                <span>本次生效</span>
+                <p id="memory-effect">研究简报 → 初稿 → 审校报告的关键决策进入当前任务上下文。</p>
+              </div>
+              <dl id="memory-fields" class="governance-grid">
+                <div><dt>来源</dt><dd>任务步骤</dd></div>
+                <div><dt>范围</dt><dd>当前任务</dd></div>
+                <div><dt>生命周期</dt><dd>任务进行中</dd></div>
+                <div><dt>操作</dt><dd>增量摘要 / 压缩</dd></div>
+              </dl>
+              <div class="memory-portability">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 3v12M7 10l5 5 5-5M5 21h14" />
+                </svg>
+                <span>Markdown 与数据库导入 / 导出，使偏好可查看、可修正、可迁移。</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="decision" class="decision-section" aria-labelledby="decision-title">
+          <div class="decision-context">
+            <p class="eyebrow">03 / HUMAN-IN-THE-LOOP</p>
+            <h2 id="decision-title">Agent 给建议，人对后果负责</h2>
+            <p>
+              低质量任务有限重试后进入人工 Decision。Decision Packet
+              把建议、依据、不确定性和批准后果放在同一张校样单上。
+            </p>
+            <dl class="ownership">
+              <div><dt>当前责任人</dt><dd id="current-owner">ORCHESTRATOR</dd></div>
+              <div><dt>任务状态</dt><dd id="task-state">等待协作流</dd></div>
+            </dl>
+          </div>
+
+          <article id="decision-packet" class="decision-packet is-locked" aria-labelledby="packet-title">
+            <div class="packet-stub" aria-hidden="true">DECISION / 0042</div>
+            <header class="packet-head">
+              <div>
+                <p>EDITORIAL DECISION PACKET</p>
+                <h3 id="packet-title">公共事件评论稿 · 审校裁决</h3>
+              </div>
+              <span id="packet-status" class="packet-status">等待审校</span>
+            </header>
+
+            <div class="packet-grid">
+              <section>
+                <span class="packet-label">建议</span>
+                <p>退回写作 Agent，补齐个人视角并保留信源依据。</p>
+              </section>
+              <section>
+                <span class="packet-label">依据</span>
+                <p>审校发现表达完整，但仍存在个人视角缺失；这是简历中确认的真实问题类型。</p>
+              </section>
+              <section>
+                <span class="packet-label">不确定性</span>
+                <p>公共事件标题与价值取向存在用户差异，不能固化为全局规则。</p>
+              </section>
+              <section>
+                <span class="packet-label">批准后果</span>
+                <p>接受当前稿件并进入待发布；决策与目标状态被记录。</p>
+              </section>
+            </div>
+
+            <div class="version-diff">
+              <span>VERSION DIFFERENCE</span>
+              <p><del>通用模板化表达</del><ins>保留作者个人视角与具体判断</ins></p>
+            </div>
+
+            <div class="decision-actions" aria-label="Decision Packet 操作">
+              <button class="button decision-button approve" type="button" data-decision="approve">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6" /></svg>
+                批准并进入待发布
+              </button>
+              <button class="button decision-button return" type="button" data-decision="return">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 14-4-4 4-4M5 10h9a5 5 0 0 1 5 5v2" /></svg>
+                退回写作 Agent
+              </button>
+              <button class="button decision-button takeover" type="button" data-decision="takeover">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M8 11V7a2 2 0 0 1 4 0v4-6a2 2 0 0 1 4 0v6-3a2 2 0 0 1 4 0v7c0 4-3 7-7 7h-1c-3 0-5-1-7-4l-3-5a2 2 0 0 1 3-2l3 3" />
+                </svg>
+                我来接管
+              </button>
+            </div>
+
+            <p class="packet-lock-message">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="5" y="10" width="14" height="10" rx="2" />
+                <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+              </svg>
+              先运行协作流，审校完成后才能处理 Decision Packet。
+            </p>
+          </article>
+
+          <div id="decision-result" class="decision-result" aria-live="polite" hidden>
+            <div>
+              <span>DECISION RECORDED</span>
+              <h3 id="result-title"></h3>
+              <p id="result-detail"></p>
+            </div>
+            <button id="run-another" class="button button-quiet" type="button">重新演示</button>
+          </div>
+
+          <div id="takeover-editor" class="takeover-editor" hidden>
+            <div class="editor-head">
+              <span>HUMAN EDITOR / LOCAL DRAFT</span>
+              <span>AGENTS PAUSED</span>
+            </div>
+            <label for="human-draft">人工修改稿</label>
+            <textarea id="human-draft" rows="5">当前稿件已保留信源依据，仍需由作者补充个人视角与具体判断。</textarea>
+            <button id="save-takeover" class="button button-primary" type="button">保存人工版本</button>
+          </div>
+        </section>
+
+        <section class="proof-section" aria-labelledby="proof-title">
+          <div>
+            <p class="eyebrow">SOURCE OF TRUTH</p>
+            <h2 id="proof-title">真实履历证据，与机制样例分开</h2>
+          </div>
+          <div class="proof-copy">
+            <p>
+              页面中的用户数、任务样本与批量任务结果均来自当前“AI Memory & Agent”定向简历；
+              页面没有添加转化率、准确率、线上稳定性或监控收益等未被证实的指标。
+            </p>
+            <p>
+              已确认的稳定交付包括：完成 30 余次实际批量任务；单次处理 50 余人、
+              每人 30 条语录文本，5 分钟内全部改写返回。
+            </p>
+            <div class="proof-links">
+              <a href="../resume/current/莫思意-AI%20Memory%26Agent-模型应用产品经理-文字稿.md">
+                查看简历文字稿
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
+              </a>
+              <a href="../output/pdf/莫思意-AI%20Memory%26Agent-模型应用产品经理-定向简历.pdf">
+                查看定向简历 PDF
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <span>莫思意 · 模型应用产品经理（AI Memory & Agent）</span>
+      <span>LOCAL INTERACTIVE DEMO · 2026</span>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

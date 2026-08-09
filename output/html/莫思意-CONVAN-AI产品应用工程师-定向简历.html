@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>莫思意｜AI 产品应用工程师</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    :root {
+      --ink: #17201f;
+      --muted: #5f6b68;
+      --soft: #8b9592;
+      --line: #d9dfdc;
+      --paper: #fffefb;
+      --canvas: #f0eee8;
+      --tint: #edf3f0;
+      --accent: #1e6258;
+      --accent-dark: #174b44;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    html,
+    body {
+      width: 210mm;
+      min-height: 297mm;
+      background: var(--canvas);
+    }
+
+    body {
+      color: var(--ink);
+      font-family: "Avenir Next", "PingFang SC", "Hiragino Sans GB",
+        "Source Han Sans SC", "Noto Sans CJK SC", sans-serif;
+      font-size: 8.45pt;
+      line-height: 1.46;
+      text-rendering: geometricPrecision;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      position: relative;
+      width: 210mm;
+      min-height: 297mm;
+      padding: 9mm 11mm 8mm;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, var(--accent) 0 3.2mm, transparent 3.2mm),
+        var(--paper);
+    }
+
+    .page::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 48mm;
+      height: 1.8mm;
+      background: var(--accent);
+    }
+
+    .header {
+      position: relative;
+      min-height: 35mm;
+      padding: 1mm 31mm 5mm 0;
+      border-bottom: 0.35mm solid var(--ink);
+    }
+
+    .eyebrow,
+    .section-kicker,
+    .meta-label {
+      color: var(--accent);
+      font-family: "SFMono-Regular", "JetBrains Mono", "Menlo", monospace;
+      font-size: 6.8pt;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow {
+      margin-bottom: 1.8mm;
+    }
+
+    .name-row {
+      display: flex;
+      align-items: baseline;
+      gap: 3mm;
+      margin-bottom: 1.6mm;
+    }
+
+    h1 {
+      font-size: 23pt;
+      font-weight: 750;
+      letter-spacing: 0.08em;
+      line-height: 1;
+    }
+
+    .target {
+      color: var(--muted);
+      font-size: 9.3pt;
+      font-weight: 650;
+    }
+
+    .contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6mm 3.4mm;
+      color: var(--muted);
+      font-family: "Avenir Next", "PingFang SC", sans-serif;
+      font-size: 7.35pt;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.01em;
+    }
+
+    .contact a {
+      border-bottom: 0.2mm solid #bdc7c3;
+    }
+
+    .photo-frame {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 25mm;
+      height: 31mm;
+      padding: 1.2mm;
+      border: 0.25mm solid #cbd3cf;
+      border-radius: 2.2mm;
+      background: #fff;
+    }
+
+    .photo {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 1.3mm;
+      object-fit: cover;
+      object-position: center 24%;
+      filter: saturate(0.92) contrast(1.02);
+    }
+
+    .positioning {
+      display: grid;
+      grid-template-columns: 24mm 1fr;
+      gap: 4mm;
+      margin: 4mm 0 3.8mm;
+      padding: 3mm 4mm;
+      border-left: 1.2mm solid var(--accent);
+      background: var(--tint);
+    }
+
+    .positioning-label {
+      padding-top: 0.4mm;
+    }
+
+    .positioning p {
+      font-size: 8.7pt;
+      font-weight: 520;
+      line-height: 1.52;
+    }
+
+    .positioning strong {
+      color: var(--accent-dark);
+      font-weight: 760;
+    }
+
+    .section {
+      margin-top: 3.4mm;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: 9mm 1fr auto;
+      align-items: baseline;
+      gap: 2mm;
+      margin-bottom: 2.2mm;
+    }
+
+    .section-index {
+      color: var(--accent);
+      font-family: "SFMono-Regular", "JetBrains Mono", "Menlo", monospace;
+      font-size: 8.4pt;
+      font-weight: 800;
+    }
+
+    .section-title {
+      font-size: 11.3pt;
+      font-weight: 760;
+      letter-spacing: 0.04em;
+    }
+
+    .section-kicker {
+      color: var(--soft);
+      font-size: 6.3pt;
+    }
+
+    .project-head,
+    .experience-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 4mm;
+      margin-bottom: 0.8mm;
+    }
+
+    .project-title,
+    .experience-title {
+      font-size: 9.3pt;
+      font-weight: 760;
+    }
+
+    .date {
+      flex: 0 0 auto;
+      color: var(--soft);
+      font-family: "SFMono-Regular", "JetBrains Mono", "Menlo", monospace;
+      font-size: 6.8pt;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5mm 3mm;
+      margin-bottom: 1.5mm;
+      color: var(--muted);
+      font-size: 7pt;
+    }
+
+    .project-meta a {
+      border-bottom: 0.2mm solid #c9d1ce;
+    }
+
+    .thesis {
+      margin-bottom: 1.7mm;
+      padding: 1.7mm 2.5mm;
+      border-radius: 1.5mm;
+      background: #f5f6f3;
+      color: #31403d;
+      font-size: 7.8pt;
+      line-height: 1.46;
+    }
+
+    .thesis strong {
+      color: var(--accent-dark);
+    }
+
+    .path-list {
+      list-style: none;
+    }
+
+    .path-list li {
+      display: grid;
+      grid-template-columns: 20mm 1fr;
+      gap: 2.5mm;
+      margin-bottom: 1.1mm;
+    }
+
+    .path-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .path-tag {
+      padding-top: 0.1mm;
+      color: var(--accent-dark);
+      font-size: 7.25pt;
+      font-weight: 760;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .path-copy,
+    .bullet-list li {
+      color: #34413f;
+      font-size: 7.65pt;
+      line-height: 1.43;
+    }
+
+    .experience {
+      padding-bottom: 0.2mm;
+    }
+
+    .secondary-project {
+      margin-top: 2.5mm;
+      padding-top: 2.3mm;
+      border-top: 0.25mm solid var(--line);
+    }
+
+    .secondary-project .project-head {
+      margin-bottom: 0.55mm;
+    }
+
+    .secondary-project .project-meta {
+      margin-bottom: 1mm;
+    }
+
+    .secondary-list {
+      list-style: none;
+    }
+
+    .secondary-list li {
+      position: relative;
+      margin-bottom: 0.75mm;
+      padding-left: 3mm;
+      color: #3b4745;
+      font-size: 7.48pt;
+      line-height: 1.43;
+    }
+
+    .secondary-list li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .secondary-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .mini-project-row {
+      display: grid;
+      grid-template-columns: 47mm 1fr;
+      gap: 4mm;
+      align-items: start;
+      margin-top: 1.6mm;
+      padding-top: 1.5mm;
+      border-top: 0.2mm dashed #cfd7d3;
+    }
+
+    .mini-project-title {
+      color: var(--ink);
+      font-size: 8pt;
+      font-weight: 760;
+      line-height: 1.25;
+    }
+
+    .mini-project-link {
+      display: inline-block;
+      margin-top: 0.6mm;
+      color: var(--accent);
+      font-family: "SFMono-Regular", "JetBrains Mono", "Menlo", monospace;
+      font-size: 6.2pt;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      border-bottom: 0.2mm solid #b9cbc5;
+    }
+
+    .mini-project-copy {
+      color: #3b4745;
+      font-size: 7.25pt;
+      line-height: 1.42;
+    }
+
+    .bullet-list {
+      list-style: none;
+    }
+
+    .bullet-list li {
+      position: relative;
+      margin-bottom: 0.95mm;
+      padding-left: 3.1mm;
+    }
+
+    .bullet-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .bullet-list li::before {
+      content: "";
+      position: absolute;
+      top: 1.65mm;
+      left: 0.6mm;
+      width: 1.15mm;
+      height: 1.15mm;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .lower-grid {
+      display: grid;
+      grid-template-columns: 1.18fr 0.82fr;
+      gap: 5.5mm;
+      margin-top: 3.4mm;
+      padding-top: 3.2mm;
+      border-top: 0.25mm solid var(--line);
+    }
+
+    .lower-column + .lower-column {
+      padding-left: 4.5mm;
+      border-left: 0.25mm solid var(--line);
+    }
+
+    .compact-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 3mm;
+      margin-bottom: 1.4mm;
+    }
+
+    .compact-title {
+      font-size: 9pt;
+      font-weight: 760;
+    }
+
+    .compact-subtitle {
+      margin-bottom: 1.3mm;
+      color: var(--muted);
+      font-size: 6.85pt;
+      line-height: 1.35;
+    }
+
+    .compact-list {
+      list-style: none;
+    }
+
+    .compact-list li {
+      position: relative;
+      margin-bottom: 1.1mm;
+      padding-left: 3mm;
+      color: #3b4745;
+      font-size: 7.32pt;
+      line-height: 1.44;
+    }
+
+    .compact-list li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .micro-project {
+      margin-top: 2.2mm;
+      padding: 2mm 2.3mm;
+      border-radius: 1.5mm;
+      background: #f5f6f3;
+      color: #3b4745;
+      font-size: 7.1pt;
+      line-height: 1.42;
+    }
+
+    .micro-project strong {
+      color: var(--ink);
+    }
+
+    .education {
+      margin-bottom: 2.4mm;
+    }
+
+    .education-main {
+      font-size: 8.1pt;
+      font-weight: 720;
+    }
+
+    .education-sub {
+      margin-top: 0.5mm;
+      color: var(--muted);
+      font-size: 6.9pt;
+      line-height: 1.4;
+    }
+
+    .skill-row {
+      margin-bottom: 1.15mm;
+      color: #3a4643;
+      font-size: 7.05pt;
+      line-height: 1.4;
+    }
+
+    .skill-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .skill-row strong {
+      color: var(--accent-dark);
+      font-weight: 760;
+    }
+
+    .education-skills {
+      padding-top: 0.2mm;
+    }
+
+    .education-line {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 4mm;
+      margin-bottom: 1mm;
+    }
+
+    .education-detail {
+      color: var(--muted);
+      font-size: 7pt;
+      line-height: 1.4;
+    }
+
+    .skills-stack {
+      margin-top: 1.4mm;
+      padding-top: 1.4mm;
+      border-top: 0.25mm solid var(--line);
+    }
+
+    .skills-stack .skill-row {
+      margin-bottom: 0.7mm;
+      font-size: 7.25pt;
+    }
+
+    .footer {
+      position: absolute;
+      right: 11mm;
+      bottom: 3.2mm;
+      color: #9ba4a1;
+      font-family: "SFMono-Regular", "JetBrains Mono", "Menlo", monospace;
+      font-size: 5.7pt;
+      letter-spacing: 0.08em;
+    }
+
+    @media screen {
+      body {
+        padding: 12mm 0;
+      }
+
+      .page {
+        margin: 0 auto;
+        box-shadow: 0 10mm 30mm rgba(20, 30, 28, 0.14);
+      }
+    }
+
+    @media print {
+      html,
+      body {
+        background: #fff;
+      }
+
+      body {
+        padding: 0;
+      }
+
+      .page {
+        margin: 0;
+        box-shadow: none;
+      }
+
+      a {
+        border-bottom: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="header">
+      <div class="name-row">
+        <h1>莫思意</h1>
+        <div class="target">AI 产品应用工程师｜产品判断 · Agent 应用 · 工程实现</div>
+      </div>
+      <div class="contact">
+        <span>19290865729</span>
+        <span>aodomosiyi@foxmail.com</span>
+        <span>杭州</span>
+        <a href="https://profile.ericdocmic.top">profile.ericdocmic.top</a>
+        <a href="https://github.com/Echo-Smith">github.com/Echo-Smith</a>
+      </div>
+      <div class="photo-frame">
+        <img class="photo" src="个人头像.jpg" alt="莫思意头像">
+      </div>
+    </header>
+
+    <section class="positioning" aria-label="个人定位">
+      <div class="positioning-label meta-label">综述</div>
+      <p>
+        来自内容业务一线、站在产品判断与工程实现交叉位置的 <strong>AI 产品应用 Builder</strong>。能够从模糊反馈中识别可被 AI 重构的任务，定义模型、上下文、工具、规则与人工确认的边界，并使用 Claude Code、Codex 协作完成可上线的 Web 产品。笔润智谈累计覆盖 <strong>200+ 名体验用户</strong>，其中 53 名作者均完成真实写作任务。
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="projects-title">
+      <div class="section-heading">
+        <div class="section-index">01</div>
+        <h2 class="section-title" id="projects-title">核心项目</h2>
+      </div>
+
+      <article>
+        <div class="project-head">
+          <h3 class="project-title">笔润智谈｜面向真实内容生产的 Agent 编辑部</h3>
+          <time class="date">2026.03—至今</time>
+        </div>
+        <div class="project-meta">
+          <span>个人发起并独立完成产品设计、AI 应用链路与 Web 交付｜V1 已进入内部内容生产流程，V2 内测中</span>
+          <a href="https://luminbuddy.ericdocmic.top">luminbuddy.ericdocmic.top</a>
+          <a href="https://github.com/Echo-Smith/luminbuddy-writing-agent-v2">GitHub / luminbuddy-writing-agent-v2</a>
+        </div>
+        <div class="thesis">
+          <strong>产品判断：</strong>AI 原生产品的价值取决于是否理解了正确的用户问题，并在模型能力、规则边界、技术成本和产品体验之间形成可验证的完整链路。
+        </div>
+        <ol class="path-list">
+          <li>
+            <span class="path-tag">定义用户问题</span>
+            <span class="path-copy">在时评写作、日常话题文案与集中投稿中发现，生成质量之外仍存在资料核验、个人偏好、版本追踪和返工协调问题；先以 V1 验证写作、润色与批量查重，再演进为研究、写作、审校协作的 Agent 编辑部。</span>
+          </li>
+          <li>
+            <span class="path-tag">实现应用链路</span>
+            <span class="path-copy">组织意图识别、查询规划、多源检索 / RAG、提纲确认、生成、审校与修复流程；使用 Go、React 与 PostgreSQL 自建编排和协作界面，以任务、交付物、决策和事件承载状态流转、版本回退与人工接管。</span>
+          </li>
+          <li>
+            <span class="path-tag">划定能力边界</span>
+            <span class="path-copy">针对公共事件标题和个人视角分歧，将偏好按用户、来源和适用范围写入个性化记忆；通过 Decision Packet 汇总建议、信源、不确定性、版本差异与批准后果，让用户在关键节点批准、退回、改派或接管。</span>
+          </li>
+          <li>
+            <span class="path-tag">评测与迭代</span>
+            <span class="path-copy">记录质量、时延、Token、人工介入与 Badcase，对比 Pipeline、Unified Agent 和 Editorial 三种链路；根据格式同质化反馈调整 Prompt，禁用模板化句式并保留风格差异。</span>
+          </li>
+          <li>
+            <span class="path-tag">真实使用验证</span>
+            <span class="path-copy">V1 覆盖 200+ 名体验用户，53 名作者均完成真实写作任务；截至 2026 年 7 月 31 日，V2 有 14 名用户、近 70 条完整任务样本。针对查重失败重构并发与兜底，完成 30 余次任务；单次处理 50 余人、每人 30 条文本，5 分钟内全部返回。</span>
+          </li>
+        </ol>
+      </article>
+
+      <article class="secondary-project">
+        <div class="project-head">
+          <h3 class="project-title">HearHer 听见妈妈｜模型选型、评测与安全边界</h3>
+          <time class="date">2026.06—2026.07</time>
+        </div>
+        <div class="project-meta">
+          <span>腾讯音乐 AI Hackathon 2 人团队｜产品规划、AI 能力设计、模型评测与 PWA 交付</span>
+          <a href="https://hearher.me">hearher.me</a>
+          <a href="https://github.com/Echo-Smith/HearHer-PWA">GitHub / HearHer-PWA</a>
+        </div>
+        <ul class="secondary-list">
+          <li>设计“状态输入—安全判断—受控推荐—真实播放—反馈沉淀”流程；由 LLM 负责语义理解与陪伴表达，以安全硬门槛、受控曲库和确定性规则约束推荐范围，明确模型与规则的委派边界。</li>
+          <li>使用 177 条音频和 30 条产品用例，对比 4 款 ASR 与 4 款 LLM 的识别、指令遵循与产品表现，完成 700+ 次调用；项目从 200+ 份提案中入围 14 项决赛作品。</li>
+        </ul>
+        <div class="mini-project-row">
+          <div>
+            <div class="mini-project-title">贝伴｜面向个人用户的 AI 订阅管理助手</div>
+            <a class="mini-project-link" href="https://subbuddy.ericdocmic.top">subbuddy.ericdocmic.top</a>
+          </div>
+          <p class="mini-project-copy">设计 Function Calling 协议，将自然语言转换为订阅增删改查和支出查询；接入视觉模型提取支付截图字段，并对删除、金额修改和低置信结果保留人工确认。</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="section experience" aria-labelledby="experience-title">
+      <div class="section-heading">
+        <div class="section-index">02</div>
+        <h2 class="section-title" id="experience-title">工作经历</h2>
+      </div>
+      <div class="experience-head">
+        <h3 class="experience-title">杭州都市快报研学文化传播有限公司｜内容运营</h3>
+        <time class="date">2024.11—至今</time>
+      </div>
+      <ul class="bullet-list">
+        <li>深入内容作者与编辑工作流，负责小红书、今日头条、微博等 40 万粉级官方账号的选题、生产、分发与复盘，协调 30+ 本地 KOL/KOC，参与约 150 人素人号矩阵管理；同时作为时评作者完成资料调研与评论写作，已有 2 篇文章获录用。</li>
+        <li>将 Agent 协作融入日常工作，把选题研究、资料检索、观点形成、初稿生成、事实核验、平台适配与复盘拆分为可委派步骤，明确上下文、验收条件和人工把关节点，形成持续使用的个人 AI 协作 SOP。</li>
+        <li>使用 Python 清洗多平台数据，并以飞书智能表格搭建话题获取、分类和数据看板；参与内部 SaaS 验收，围绕流程、数据和交互提交 6 项分级问题，协助开发团队在半小时内定位关键问题并完成核心功能验证。</li>
+      </ul>
+    </section>
+
+    <section class="section education-skills" aria-labelledby="education-title">
+      <div class="section-heading">
+        <div class="section-index">03</div>
+        <h2 class="section-title" id="education-title">教育与能力</h2>
+      </div>
+      <div class="education-line">
+        <div class="education-main">齐鲁工业大学｜新媒体技术（工科·计算机大类）｜本科</div>
+        <time class="date">2020.09—2024.06</time>
+      </div>
+      <div class="education-detail">相关课程：机器学习与模式识别、人工智能与深度学习、智能媒体传播、移动软件开发</div>
+      <div class="skills-stack">
+        <div class="skill-row"><strong>产品判断：</strong>用户洞察、问题抽象、任务与对象建模、需求优先级、原型 / PRD、反馈分析与产品验证。</div>
+        <div class="skill-row"><strong>AI 应用与评测：</strong>Prompt、上下文工程、结构化输出、RAG、Function Calling、Workflow、Memory、Multi-Agent、Human-in-the-loop、LLM-as-Judge 与 Badcase。</div>
+        <div class="skill-row"><strong>工程实现：</strong>Go、TypeScript / React、Node.js、Python、SQL / PostgreSQL、REST API、WebSocket、Docker、Git。</div>
+        <div class="skill-row"><strong>AI Coding：</strong>长期使用 Claude Code、Codex 完成需求分析、方案设计、代码实现、测试审查与文档沉淀；使用 OpenClaw、Dify 连接检索与工作流。</div>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
