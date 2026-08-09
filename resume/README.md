@@ -9,6 +9,7 @@
 | 优先级 | 使用场景 | 标准名称 | 可编辑源 | HTML | PDF |
 | --- | --- | --- | --- | --- | --- |
 | 高优先级定向 | 猎头代招 / 通用 AI 产品：Agent、Copilot、智能工作流；需先核验实际客户 | 莫思意-AI产品经理-定向简历 | [文字稿](current/莫思意-AI产品经理-定向简历-文字稿.md) | [HTML](../output/html/莫思意-AI产品经理-定向简历.html) | [PDF](../output/pdf/莫思意-AI产品经理-定向简历.pdf) |
+| 机会型定向 | OPPO 影像设备用户运营；职责可迁移，智能硬件和高级年限为硬缺口 | 莫思意-OPPO-高级用户运营经理-转向简历 | [文字稿](current/莫思意-OPPO-高级用户运营经理-转向简历-文字稿.md) | [HTML](../output/html/莫思意-OPPO-高级用户运营经理-转向简历.html) | [PDF](../output/pdf/莫思意-OPPO-高级用户运营经理-转向简历.pdf) |
 | 高优先级定向 | DeepSeek：AI 产品 / Agent Harness（官网正式 Brief） | 莫思意-DeepSeek-AI产品经理-定向简历 | [文字稿](current/莫思意-DeepSeek-AI产品经理-文字稿.md) | [HTML](../output/html/莫思意-DeepSeek-AI产品经理-定向简历.html) | [PDF](../output/pdf/莫思意-DeepSeek-AI产品经理-定向简历.pdf) |
 | 高优先级通用 | AI 应用工程师、Agent 应用工程师、LLM 应用开发 | 莫思意-AI应用工程师-通用简历 | [文字稿](current/莫思意-AI应用工程师-文字稿.md) | [HTML](../output/html/莫思意-AI应用工程师-通用简历.html) | [PDF](../output/pdf/莫思意-AI应用工程师-通用简历.pdf) |
 | 高优先级定向 | AI Memory、Agent、企业知识与长期关系型 AI 应用产品 | 莫思意-AI Memory&Agent-模型应用产品经理-定向简历 | [文字稿](current/莫思意-AI%20Memory%26Agent-模型应用产品经理-文字稿.md) | [HTML](../output/html/莫思意-AI%20Memory%26Agent-模型应用产品经理-定向简历.html) | [PDF](../output/pdf/莫思意-AI%20Memory%26Agent-模型应用产品经理-定向简历.pdf) |
