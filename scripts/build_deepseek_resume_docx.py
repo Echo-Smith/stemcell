@@ -19,11 +19,10 @@ MUTED = "66758A"
 ACCENT = "D1E0F9"
 ACCENT_SOFT = "F2F6FD"
 ACCENT_DEEP = "315F94"
-FONT_LATIN = "Arial"
-# Arial Unicode MS is available to both Word on macOS and the headless
-# LibreOffice renderer used for delivery QA. PingFang is not exposed to the
-# renderer in this environment and is therefore unsuitable for portable PDF
-# export even though it looks correct when opened in Word.
+# LibreOffice can ignore the East Asia font mapping when the same run mixes
+# Chinese and Latin characters. Use one Unicode family for every script so the
+# exported PDF keeps CJK glyphs while remaining editable in Word on macOS.
+FONT_LATIN = "Arial Unicode MS"
 FONT_CJK = "Arial Unicode MS"
 
 
