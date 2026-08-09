@@ -1,6 +1,6 @@
 ---
 name: ai-resume-assistant
-description: Build, audit, tailor, benchmark, revise, organize, and deliver evidence-backed Chinese or English resumes, and help users accumulate defensible product experience while work is still in progress. Use when the user asks to analyze an existing resume, compare it with a sample or market benchmark, reconstruct a career story, match a JD, draft or co-author resume content, strengthen project narratives and metrics, create product decision logs, distinguish a Vibe Coding demo from a validated product loop, plan evidence collection, manage resume versions, or produce synchronized Markdown, HTML, and PDF deliverables. Preserve factual provenance, separate document quality from candidate competitiveness and role fit, distinguish missing evidence from mismatch, and never invent experience, outcomes, or keywords.
+description: Build, audit, tailor, benchmark, revise, organize, and deliver evidence-backed Chinese or English resumes; assess job-post legitimacy, labor and hiring-compliance signals, recruitment scams, and risky personal-data requests; and help users accumulate defensible product experience while work is still in progress. Use when the user asks to analyze a resume, compare a market sample, reconstruct a career story, match or evaluate a JD, judge whether a recruiter or opportunity is credible and safe, draft resume content, strengthen project evidence, create product decision logs, distinguish a Vibe Coding demo from a validated product loop, manage resume versions, or produce synchronized Markdown, HTML, and PDF deliverables. Preserve factual provenance, separate document quality, candidate competitiveness, role fit, opportunity attractiveness, and recruitment risk, and never invent experience, outcomes, keywords, legal findings, or fraud claims.
 ---
 
 # AI Resume Assistant
@@ -56,6 +56,8 @@ Use when a JD or target company is supplied.
 - Select and reorder evidence; do not imitate every JD phrase.
 - Never add a platform, workflow, title, business scenario, or skill merely because the JD mentions it.
 - Make transferable experience explicit without relabeling it as direct experience.
+- Run a compact opportunity-risk screen whenever a JD or recruiter message is supplied. Keep role fit separate from labor compliance, identity credibility, fraud risk, and personal-data risk.
+- Read [references/job-legitimacy-and-labor-risk.md](references/job-legitimacy-and-labor-risk.md) when the user asks whether a role is legitimate or lawful, when browsing is needed to verify the employer, or when the text contains material warning signs.
 
 ### Delivery mode
 
@@ -177,6 +179,21 @@ After mapping, report:
 2. likely screening risk;
 3. the three highest-value resume changes;
 4. questions that could change the conclusion.
+
+### Assess opportunity safety without overclaiming
+
+For every supplied JD, scan for material information gaps, identity inconsistencies, questionable employment terms, recruitment charges, training or loan conversion, excessive personal-data collection, and scam patterns. Keep this short when no meaningful issue is found.
+
+When risk is material:
+
+- identify the jurisdiction and employment type before applying labor-law rules;
+- browse current official legal, regulatory, judicial, and government anti-fraud sources;
+- distinguish what the post says, what independent sources corroborate, what remains unclear, and what an authority has actually determined;
+- grade labor/hiring risk, identity/credibility risk, and fraud/data risk separately;
+- give the user a bounded verification checklist and safe next action;
+- do not call an employer illegal or fraudulent from wording, salary, outsourcing status, or missing information alone.
+
+Use [references/job-legitimacy-and-labor-risk.md](references/job-legitimacy-and-labor-risk.md) for the full procedure, mainland-China baseline, critical stop signals, and output template.
 
 ## 5. Reconstruct projects as product evidence
 
@@ -412,8 +429,9 @@ Return:
 1. overall fit with confidence;
 2. evidence by core requirement;
 3. screening risks;
-4. recommended positioning;
-5. whether a targeted resume is worth producing.
+4. opportunity legitimacy and safety screen, including only material labor, identity, fraud, or personal-data risks;
+5. recommended positioning;
+6. whether a targeted resume is worth producing and what must be verified first.
 
 ### Drafting request
 

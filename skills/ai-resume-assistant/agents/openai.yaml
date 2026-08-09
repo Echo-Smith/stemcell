@@ -1,5 +1,5 @@
 interface:
   display_name: "AI Resume Assistant"
-  short_description: "Accumulate evidence, audit, tailor, and deliver resumes"
+  short_description: "Evidence-led resumes, role fit, and job-risk checks"
   brand_color: "#334155"
-  default_prompt: "Use $ai-resume-assistant to accumulate defensible product evidence or build an evidence-backed targeted resume, separate delivery from outcomes and document quality from role fit, and keep deliverables synchronized."
+  default_prompt: "Use $ai-resume-assistant to evaluate this opportunity's fit, legitimacy, labor and data risks, then build an evidence-backed targeted resume without inventing facts or legal findings."
