@@ -1,6 +1,6 @@
 # 简历资产总索引
 
-更新时间：2026-08-09
+更新时间：2026-08-12
 
 本目录是 `workforlife` 中当前简历源稿、评估反馈与事实材料的统一入口。正式可投递的 HTML/PDF 成品放在 `output/`，避免源文件与导出物混在一起。
 
@@ -8,7 +8,9 @@
 
 | 优先级 | 使用场景 | 标准名称 | 可编辑源 | HTML | PDF |
 | --- | --- | --- | --- | --- | --- |
-| 高优先级定向 | 猎头代招 / 通用 AI 产品：Agent、Copilot、智能工作流；需先核验实际客户 | 莫思意-AI产品经理-定向简历 | [文字稿](current/莫思意-AI产品经理-定向简历-文字稿.md) | [HTML](../output/html/莫思意-AI产品经理-定向简历.html) | [PDF](../output/pdf/莫思意-AI产品经理-定向简历.pdf) |
+| **默认母版** | BOSS 直聘、脉脉、猎聘、智联及通用社招渠道；AI 应用、Agent、C 端工具产品经理 | 莫思意-AI产品经理-通用简历 | [文字稿](current/莫思意-AI产品经理-通用简历-文字稿.md) | [HTML](../output/html/莫思意-AI产品经理-通用简历.html) | [PDF](../output/pdf/莫思意-AI产品经理-通用简历.pdf) |
+| 高优先级定向 | 小红书：C 端 Agent 效果策略、Prompt / Memory、Eval 与 Badcase 闭环；需核验是否直招 | 莫思意-小红书-Agent策略产品运营-定向简历 | [文字稿](current/莫思意-小红书-Agent策略产品运营-定向简历-文字稿.md) | [HTML](../output/html/莫思意-小红书-Agent策略产品运营-定向简历.html) | [PDF](../output/pdf/莫思意-小红书-Agent策略产品运营-定向简历.pdf) |
+| 机会型高优先级 | 阅文：AI 内容生产、创作者工具、Agent 编辑部与 IP 改编工作流；精确 HC 待核验 | 莫思意-阅文-AI产品经理-定向简历 | [文字稿](current/莫思意-阅文-AI产品经理-定向简历-文字稿.md) | [HTML](../output/html/莫思意-阅文-AI产品经理-定向简历.html) | [PDF](../output/pdf/莫思意-阅文-AI产品经理-定向简历.pdf) |
 | 机会型定向 | OPPO 影像设备用户运营；职责可迁移，智能硬件和高级年限为硬缺口 | 莫思意-OPPO-高级用户运营经理-转向简历 | [文字稿](current/莫思意-OPPO-高级用户运营经理-转向简历-文字稿.md) | [HTML](../output/html/莫思意-OPPO-高级用户运营经理-转向简历.html) | [PDF](../output/pdf/莫思意-OPPO-高级用户运营经理-转向简历.pdf) |
 | 高优先级定向 | DeepSeek：AI 产品 / Agent Harness（官网正式 Brief） | 莫思意-DeepSeek-AI产品经理-定向简历 | [文字稿](current/莫思意-DeepSeek-AI产品经理-文字稿.md) | [HTML](../output/html/莫思意-DeepSeek-AI产品经理-定向简历.html) | [PDF](../output/pdf/莫思意-DeepSeek-AI产品经理-定向简历.pdf) |
 | 高优先级通用 | AI 应用工程师、Agent 应用工程师、LLM 应用开发 | 莫思意-AI应用工程师-通用简历 | [文字稿](current/莫思意-AI应用工程师-文字稿.md) | [HTML](../output/html/莫思意-AI应用工程师-通用简历.html) | [PDF](../output/pdf/莫思意-AI应用工程师-通用简历.pdf) |
@@ -35,7 +37,8 @@ resume/
 
 output/
 ├── html/                     # 当前可投递 HTML
-└── pdf/                      # 当前可投递 PDF
+├── pdf/                      # 当前可投递 PDF
+└── txt/                      # 求职平台粘贴用纯文本
 ```
 
 ## 命名规范
@@ -60,18 +63,21 @@ output/
 ## 使用规则
 
 1. 投递时只从 `output/pdf/` 根层选择文件。
-2. 修改任一当前版本时，先更新 `resume/current/` 的文字稿，再同步 HTML/PDF。
-3. 当前版本均需保持 Markdown、HTML、PDF 三类文件对应；其中 B 端 AI 产品经理版属于硬性年限不匹配的低优先级尝试稿。
+2. 修改任一当前版本时，先更新 `resume/current/` 的文字稿，再同步 HTML/PDF；通用母版同时同步 TXT。
+3. 通用母版需保持 Markdown、HTML、PDF、TXT 四类文件事实、顺序与数字一致；其中 B 端 AI 产品经理版属于硬性年限不匹配的低优先级尝试稿。
 4. 历史事实只从 `evidence/` 与用户最新确认中追溯，不再依赖旧简历。
 5. 所有数字应能说明时间范围、样本与数据来源；无法核验的指标不要回流当前版本。
 6. 新增岗位定向版时，同时创建同名文字稿、HTML 和 PDF，并更新本索引。
 7. 新导入的旧简历先提取可核验事实；完成事实入账后删除旧简历文件，避免形成多个权威版本。
+8. BOSS 直聘、脉脉、猎聘、智联优先使用通用母版；平台字段受限时复制 `output/txt/`，不临时改写事实口径。
+9. 每次母版替换需记录在 [VERSIONS.md](VERSIONS.md)，旧版移入 `resume/archive/` 与 `output/archive/`。
 
 ## 重要参考
 
 - [简历迭代经验](notes/2026-07-24-简历迭代经验.md)
 - [历史履历事实台账](evidence/2026-07-31-历史履历事实台账.md)
 - [笔润智谈用户验证与迭代记录](evidence/2026-07-31-笔润智谈用户验证与迭代.md)
+- [AI 产品用户需求与结果补充](evidence/2026-08-12-AI产品用户需求与结果补充.md)
 - [笔润智谈 V2 架构实现核验](evidence/2026-08-04-笔润智谈V2架构实现核验.md)
 - [2025 年度工作总结事实提取](evidence/2026-08-09-2025年度工作总结事实提取.md)
 - [2025—2026 季度考核工作事实台账](evidence/2026-08-09-季度考核工作事实台账.md)

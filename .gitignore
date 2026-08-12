@@ -37,6 +37,9 @@ resume/feedback/legacy-system-ai/
 # Generated binary resume deliverables and packages
 output/docx/
 output/pdf/
+output/packages/
+output/archive/**/docx/
+output/archive/**/pdf/
 outputs/
 *.zip
 *.tar.gz
@@ -44,4 +47,3 @@ outputs/
 # Release artifacts
 ericdocmic-main-site/release/
 mosiyi-portfolio/mosiyi-portfolio/
-

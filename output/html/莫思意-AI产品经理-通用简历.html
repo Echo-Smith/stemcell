@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>莫思意｜AI 产品经理｜通用简历</title>
+  <style>
+    :root {
+      --ink: #18202b;
+      --muted: #5d6876;
+      --line: #d9e0e8;
+      --accent: #285ea8;
+      --accent-soft: #eef4fc;
+      --paper: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    @page {
+      size: A4 portrait;
+      margin: 7.5mm 9mm;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #edf0f4;
+      color: var(--ink);
+      font-family: "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      font-size: 8.35pt;
+      line-height: 1.33;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 7.5mm 9mm;
+      background: var(--paper);
+    }
+
+    .masthead {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 20mm;
+      gap: 5mm;
+      align-items: start;
+      padding-bottom: 3.2mm;
+      border-bottom: 0.55mm solid var(--accent);
+    }
+
+    .identity {
+      min-width: 0;
+    }
+
+    h1 {
+      margin: 0 0 1.2mm;
+      font-size: 20pt;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      font-weight: 760;
+    }
+
+    .target {
+      margin: 0 0 1.35mm;
+      color: var(--accent);
+      font-size: 9.6pt;
+      line-height: 1.15;
+      font-weight: 680;
+      letter-spacing: 0.025em;
+    }
+
+    .contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6mm 2.2mm;
+      color: var(--muted);
+      font-size: 7.7pt;
+    }
+
+    .contact span + span::before {
+      content: "·";
+      margin-right: 2.2mm;
+      color: #a0a9b5;
+    }
+
+    .avatar {
+      width: 20mm;
+      height: 25mm;
+      object-fit: cover;
+      object-position: 50% 42%;
+      border-radius: 1.4mm;
+      border: 0.3mm solid var(--line);
+      background: #f5f7fa;
+      display: block;
+    }
+
+    section {
+      margin-top: 3.1mm;
+    }
+
+    .section-title {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2.2mm;
+      align-items: center;
+      margin: 0 0 1.4mm;
+      color: var(--accent);
+      font-size: 9.4pt;
+      font-weight: 760;
+      letter-spacing: 0.08em;
+    }
+
+    .section-title::after {
+      content: "";
+      height: 0.25mm;
+      background: var(--line);
+    }
+
+    p { margin: 0; }
+
+    .summary {
+      color: #2b3542;
+      font-size: 8.25pt;
+    }
+
+    .capabilities {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.4mm;
+    }
+
+    .capability {
+      padding: 1.6mm 1.9mm;
+      border-top: 0.45mm solid var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .capability strong {
+      display: block;
+      margin-bottom: 0.55mm;
+      color: #1e4f91;
+      font-size: 8.1pt;
+    }
+
+    .item + .item {
+      margin-top: 2.45mm;
+    }
+
+    .item-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 3mm;
+      margin-bottom: 0.45mm;
+    }
+
+    .item-title {
+      min-width: 0;
+      font-size: 9pt;
+      line-height: 1.18;
+      font-weight: 750;
+    }
+
+    .item-date {
+      flex: 0 0 auto;
+      color: var(--muted);
+      font-size: 7.5pt;
+      white-space: nowrap;
+    }
+
+    .item-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 3mm;
+      margin-bottom: 0.65mm;
+      color: var(--muted);
+      font-size: 7.45pt;
+    }
+
+    .item-meta .links {
+      flex: 0 0 auto;
+      white-space: nowrap;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      position: relative;
+      margin: 0.35mm 0 0;
+      padding-left: 2.5mm;
+    }
+
+    li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    li strong { font-weight: 720; }
+
+    .compact-product {
+      padding: 1.45mm 1.8mm;
+      background: #f7f9fb;
+      border-left: 0.55mm solid var(--accent);
+    }
+
+    .education { display: block; }
+
+    .education .course {
+      color: var(--muted);
+      font-size: 7.45pt;
+      margin-top: 0.45mm;
+      text-align: left;
+    }
+
+    @media screen {
+      .page { box-shadow: 0 4mm 16mm rgba(25, 35, 50, 0.12); }
+    }
+
+    @media print {
+      html, body { background: #fff; }
+      .page {
+        width: auto;
+        min-height: auto;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="masthead">
+      <div class="identity">
+        <h1>莫思意</h1>
+        <p class="target">AI 产品经理｜AI 应用 · Agent · C 端工具</p>
+        <div class="contact" aria-label="联系方式">
+          <span>杭州</span><span>19290865729</span><span>aodomosiyi@foxmail.com</span>
+          <span><a href="https://profile.ericdocmic.top">作品集</a></span>
+          <span><a href="https://github.com/Echo-Smith">GitHub</a></span>
+        </div>
+      </div>
+      <img class="avatar" src="个人头像.jpg" alt="莫思意头像">
+    </header>
+
+    <section aria-labelledby="summary-heading">
+      <h2 class="section-title" id="summary-heading">个人概述</h2>
+      <p class="summary">具备近 2 年内容平台、城市品牌传播与跨团队项目推进经验，个人发起并独立交付 AI 内容产品，完成用户访谈、问题定义、功能规划、交互设计、上线与迭代。能够从真实任务出发判断模型、规则和人工确认的边界，并结合用户反馈、Badcase 与评测结果优化体验。主项目已进入真实投稿流程：2026 年 5—8 月，14 位作者借助产品完成 28 篇获栏目刊发的稿件，单个用户最高使用 20 余次；200+ 体验规模作为补充验证。</p>
+    </section>
+
+    <section aria-labelledby="ability-heading">
+      <h2 class="section-title" id="ability-heading">核心能力</h2>
+      <div class="capabilities">
+        <div class="capability"><strong>产品规划与交付</strong>用户研究、任务流程、需求拆解、版本优先级、PRD / 原型、项目推进、测试验收与上线复盘。</div>
+        <div class="capability"><strong>AI 产品设计</strong>围绕检索、生成、审校和结构化操作设计 Agent 工作流，设置人工确认与失败兜底。</div>
+        <div class="capability"><strong>效果验证</strong>构建场景用例、回收并归因 Badcase；结合反馈与数据迭代，并用 AI Coding、Python、SQL 完成验证。</div>
+      </div>
+    </section>
+
+    <section aria-labelledby="projects-heading">
+      <h2 class="section-title" id="projects-heading">核心项目</h2>
+
+      <article class="item">
+        <div class="item-head">
+          <div class="item-title">笔润智谈｜面向投稿作者的 AI 写作产品</div>
+          <div class="item-date">2026.03—至今</div>
+        </div>
+        <div class="item-meta">
+          <span>个人发起并独立负责需求定义、版本规划、交互设计、Agent 工作流与 Web 交付</span>
+          <span class="links"><a href="https://luminbuddy2.ericdocmic.top">在线体验</a> · <a href="https://github.com/Echo-Smith/luminbuddy-writing-agent-v2">GitHub</a></span>
+        </div>
+        <ul>
+          <li><strong>用户与功能：</strong>面向缺少选题与构思方法、需要向多个栏目投稿的作者，围绕“找选题—构思—撰文—检查—成稿”设计热搜选题写作、润色与查重，优先解决最耗时的选题和构思环节。</li>
+          <li><strong>产品机制：</strong>为降低资料无法核验、写作步骤遗漏和长任务中断，引入外部检索与来源记录，将研究、写作、审校拆成可跟踪步骤；复杂任务由 Agent 调用工具，关键节点保留批准、退回和人工接管。</li>
+          <li><strong>反馈迭代：</strong>针对“逻辑更清楚但措辞不够像本人、部分表达模板化”的反馈，区分通用写作规范与个人表达偏好，并通过用户级记忆、提示约束和失败回退持续调整。</li>
+          <li><strong>真实结果：</strong>2026 年 5—8 月，14 位作者借助产品完成 28 篇获栏目刊发的稿件，单个用户最高使用 20 余次；累计覆盖 200+ 体验用户。</li>
+        </ul>
+      </article>
+
+      <article class="item">
+        <div class="item-head">
+          <div class="item-title">HearHer 听见妈妈｜孕产场景的安全音乐陪伴产品</div>
+          <div class="item-date">2026.06—2026.07</div>
+        </div>
+        <div class="item-meta">
+          <span>腾讯音乐 AI Hackathon 两人团队｜负责需求研究、产品规划、AI 能力设计、模型评测与 PWA 交付</span>
+          <span class="links"><a href="https://hearher.me">项目介绍</a> · <a href="https://github.com/Echo-Smith/HearHer-PWA">GitHub</a></span>
+        </div>
+        <ul>
+          <li><strong>场景与流程：</strong>通过孕期妈妈、三甲医院妇产科医生及临床医学背景人士访谈，聚焦疼痛、不适或情绪难以表达的时刻，设计“状态选择 / 语音输入—音乐陪伴—感受反馈”主流程，并提供心情快捷入口与知识库树洞对话。</li>
+          <li><strong>安全策略：</strong>明确大出血、胸痛气促、胎动异常、自伤或伤害婴儿等高风险输入；命中后停止普通音乐推荐，转为就医或求助提示，普通场景才进入受控内容匹配，避免把模型用于医疗判断。</li>
+          <li><strong>选型验证：</strong>围绕否定词与风险词漏识别可能反转语义的问题，以 177 条合成音频和 30 条产品用例对比 4 款 ASR、4 款 LLM，完成 700+ 次调用；累计 50+ 人体验，项目从 200+ 份提案中入围 14 项决赛作品。</li>
+        </ul>
+      </article>
+
+      <article class="item compact-product">
+        <div class="item-head">
+          <div class="item-title">贝伴｜订阅管理 AI 助手</div>
+          <div class="item-date">个人产品 · 已上线 · <a href="https://subbuddy.ericdocmic.top">在线体验</a></div>
+        </div>
+        <p>面向订阅、权益与支出分散的问题，完成支付截图录入、订阅增删改查、支出查询及账户管理；使用视觉模型提取订阅时间、金额和权益，识别错配等 Badcase 并保留人工修正。已跑通短信 / 邮件验证、导入导出与账号注销。</p>
+      </article>
+    </section>
+
+    <section aria-labelledby="experience-heading">
+      <h2 class="section-title" id="experience-heading">工作经历</h2>
+      <article class="item">
+        <div class="item-head">
+          <div class="item-title">杭州都市快报研学文化传播有限公司｜内容运营 · 城市品牌传播与内容策略</div>
+          <div class="item-date">2024.11—至今</div>
+        </div>
+        <ul>
+          <li><strong>内容供给与协同：</strong>围绕城市形象与重点节点，将选题、约稿、审核、平台适配、发布监测和归档串成稳定流程；作为内容生产与分发之间的协同中间层，2025 年推动 99 件团队稿件获相关专栏刊发。</li>
+          <li><strong>多平台矩阵运营：</strong>负责今日头条、微博、小红书等官号的内容适配、排期与数据监测，并参与约 150 个素人账号的任务分发、发布巡检和反馈回收；根据平台差异调整标题、素材与频率，2025 年头条账号粉丝 2 万+、日均展现约 3 万，日均分发重点内容约 3 条。</li>
+          <li><strong>系统验收与闭环：</strong>从一线使用流程出发参与内部系统上线前验收，按任务阻断程度提交 6 项问题，补充复现路径、关键字段与截图，协助开发团队约 30 分钟定位关键问题并完成回归验证。</li>
+        </ul>
+      </article>
+    </section>
+
+    <section aria-labelledby="education-heading">
+      <h2 class="section-title" id="education-heading">教育背景</h2>
+      <div class="education">
+        <p><strong>齐鲁工业大学｜新媒体技术（工科 · 计算机大类）｜本科</strong>｜2020.09—2024.06</p>
+        <p class="course">机器学习与模式识别 · 人工智能与深度学习 · 智能媒体传播 · 移动软件开发</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
