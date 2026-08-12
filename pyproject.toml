@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stemcell"
+version = "0.1.0"
+description = "Reset-Clone-Differentiate-Quality four-stage Agent pipeline MVP"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = [
+    "openai>=1.0.0",
+    "pyyaml>=6.0",
+    "click>=8.0",
+    "rich>=13.0",
+]
+
+[project.scripts]
+stemcell = "stemcell.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["stemcell*"]
+
+[tool.setuptools.package-data]
+stemcell = ["prompts/*.md"]

@@ -1,0 +1,38 @@
+# LLM 配置
+llm:
+  provider: openai          # openai / anthropic / 兼容OpenAI协议的自定义端点
+  api_key: "your-api-key-here"
+  base_url: ""              # 自定义端点，留空用默认
+  model: "gpt-4o-mini"      # 分化生成用的模型
+  reset_model: "gpt-4o-mini" # 重置提炼用的模型
+  quality_model: "gpt-4o-mini" # 质控打分用的模型
+  temperature: 0.7
+  max_tokens: 2048
+  timeout: 60
+
+# 流水线配置
+pipeline:
+  default_perspectives:
+    - conservative      # 保守稳健视角
+    - engineering       # 工程落地视角
+    - creative          # 激进创新视角
+    - risk              # 风险审计视角
+  default_count: 8      # 默认生成候选数量
+  default_top: 4        # 默认输出Top-N
+  max_concurrent: 6     # 最大并发数
+
+# 质控维度
+quality:
+  dimensions:
+    - name: feasibility
+      label: 可行性
+      weight: 0.3
+    - name: creativity
+      label: 创新性
+      weight: 0.25
+    - name: completeness
+      label: 完整性
+      weight: 0.25
+    - name: risk
+      label: 风险控制
+      weight: 0.2
