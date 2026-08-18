@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>莫思意｜小红书 Agent 策略产品运营定向简历</title>
+  <style>
+    @page { size: A4; margin: 0; }
+    :root {
+      --ink: #171518;
+      --body: #403c41;
+      --muted: #746e75;
+      --soft: #9b949c;
+      --line: #e3dde1;
+      --paper: #ffffff;
+      --canvas: #f3f1f2;
+      --accent: #ff2442;
+      --accent-dark: #c81431;
+      --tint: #fff2f4;
+      --tint-2: #faf7f8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    html, body { width: 210mm; min-height: 297mm; background: var(--canvas); }
+    body {
+      color: var(--ink);
+      font-family: "Avenir Next", "PingFang SC", "Hiragino Sans GB", "Source Han Sans SC", sans-serif;
+      font-size: 8.05pt;
+      line-height: 1.46;
+      text-rendering: geometricPrecision;
+    }
+    a { color: inherit; text-decoration: none; }
+    .page {
+      position: relative;
+      width: 210mm;
+      height: 297mm;
+      padding: 8.5mm 11mm 7.5mm;
+      overflow: hidden;
+      background: var(--paper);
+    }
+    .page::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 2mm; background: var(--accent); }
+    .header {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 26mm;
+      gap: 8mm;
+      min-height: 34mm;
+      padding: 4.8mm 0 4.8mm;
+      border-bottom: 0.35mm solid var(--ink);
+    }
+    .kicker {
+      margin-bottom: 4.7mm;
+      color: var(--accent);
+      font-family: "SFMono-Regular", "JetBrains Mono", Menlo, monospace;
+      font-size: 6.7pt;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .name-row { display: flex; align-items: baseline; gap: 3.2mm; margin-bottom: 2.4mm; }
+    h1 { font-size: 23pt; line-height: 1; font-weight: 780; letter-spacing: 0.07em; }
+    .target { color: var(--body); font-size: 9.4pt; font-weight: 680; }
+    .contact { display: flex; flex-wrap: wrap; gap: 0.5mm 3.2mm; color: var(--muted); font-size: 7.1pt; font-variant-numeric: tabular-nums; }
+    .contact a { border-bottom: 0.2mm solid #cfc6ca; }
+    .photo-frame { align-self: start; width: 25mm; height: 31mm; padding: 1.1mm; border: 0.25mm solid #ddd3d7; border-radius: 3mm; background: #fff; }
+    .photo { display: block; width: 100%; height: 100%; border-radius: 2.1mm; object-fit: cover; object-position: center 24%; filter: saturate(0.92) contrast(1.02); }
+
+    .intro {
+      display: grid;
+      grid-template-columns: 38mm 1fr;
+      gap: 6mm;
+      padding: 4mm 0 3.6mm;
+      border-bottom: 0.25mm solid var(--line);
+    }
+    .intro-rail { padding: 2.2mm 3mm 2.2mm 0; border-right: 1.1mm solid var(--accent); }
+    .rail-label { margin-bottom: 1.5mm; color: var(--accent); font-family: "SFMono-Regular", Menlo, monospace; font-size: 6.5pt; font-weight: 800; letter-spacing: 0.12em; }
+    .rail-title { font-size: 12.2pt; line-height: 1.25; font-weight: 780; letter-spacing: -0.01em; }
+    .rail-sub { margin-top: 1.3mm; color: var(--muted); font-size: 6.85pt; line-height: 1.42; }
+    .intro-copy { color: var(--body); font-size: 8.3pt; line-height: 1.55; }
+    .intro-copy strong { color: var(--accent-dark); font-weight: 780; }
+    .proof-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; margin-top: 2.4mm; }
+    .proof { padding-top: 1.8mm; border-top: 0.5mm solid var(--ink); }
+    .proof strong { display: block; color: var(--ink); font-family: "Avenir Next", "PingFang SC", sans-serif; font-size: 12.5pt; line-height: 1; font-weight: 800; font-variant-numeric: tabular-nums; }
+    .proof span { display: block; margin-top: 0.75mm; color: var(--muted); font-size: 6.45pt; line-height: 1.25; }
+
+    .resume-section { padding: 3.4mm 0 3.2mm; border-bottom: 0.25mm solid var(--line); }
+    .section-heading { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 2.2mm; }
+    .section-title { display: flex; align-items: baseline; gap: 2.5mm; font-size: 10.7pt; font-weight: 780; }
+    .section-index { color: var(--accent); font-family: "SFMono-Regular", Menlo, monospace; font-size: 7.2pt; font-weight: 800; }
+    .section-note { color: var(--soft); font-family: "SFMono-Regular", Menlo, monospace; font-size: 6.2pt; letter-spacing: 0.05em; }
+    .resume-row { display: grid; grid-template-columns: 42mm 1fr; gap: 6mm; }
+    .project-side { padding-right: 4.2mm; border-right: 0.25mm solid var(--line); }
+    .project-title { font-size: 9.3pt; line-height: 1.34; font-weight: 780; }
+    .project-role { margin-top: 1mm; color: var(--muted); font-size: 6.7pt; line-height: 1.42; }
+    .project-date { margin-top: 1.2mm; color: var(--soft); font-family: "SFMono-Regular", Menlo, monospace; font-size: 6.4pt; }
+    .project-links { display: flex; flex-wrap: wrap; gap: 0.8mm 2mm; margin-top: 1.25mm; color: var(--accent-dark); font-size: 6.45pt; font-weight: 700; }
+    .project-links a { border-bottom: 0.2mm solid #e6a5af; }
+    .side-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 1.8mm 2mm; margin-top: 2.4mm; }
+    .side-metric { padding: 1.4mm 0 0.7mm; border-top: 0.25mm solid var(--line); }
+    .side-metric strong { display: block; font-size: 9.4pt; line-height: 1; font-weight: 800; font-variant-numeric: tabular-nums; }
+    .side-metric span { display: block; margin-top: 0.55mm; color: var(--muted); font-size: 5.95pt; line-height: 1.22; }
+    .strategy-list { list-style: none; }
+    .strategy-list li { display: grid; grid-template-columns: 22mm 1fr; gap: 2.5mm; margin-bottom: 1.15mm; }
+    .strategy-list li:last-child { margin-bottom: 0; }
+    .strategy-tag { color: var(--accent-dark); font-size: 7pt; font-weight: 780; white-space: nowrap; }
+    .strategy-copy { color: var(--body); font-size: 7.45pt; line-height: 1.47; }
+    .strategy-copy strong { color: var(--accent-dark); font-weight: 780; }
+
+    .work-list { list-style: none; }
+    .work-list li { position: relative; margin-bottom: 1.25mm; padding-left: 3.3mm; color: var(--body); font-size: 7.45pt; line-height: 1.47; }
+    .work-list li:last-child { margin-bottom: 0; }
+    .work-list li::before { content: ""; position: absolute; top: 1.65mm; left: 0; width: 1.2mm; height: 1.2mm; border-radius: 50%; background: var(--accent); }
+    .work-list strong { color: var(--accent-dark); font-weight: 780; }
+
+    .bottom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; padding-top: 3.2mm; }
+    .bottom-column + .bottom-column { padding-left: 5mm; border-left: 0.25mm solid var(--line); }
+    .bottom-title { margin-bottom: 1.1mm; color: var(--ink); font-size: 8.5pt; font-weight: 780; }
+    .education-main { font-size: 7.55pt; font-weight: 720; line-height: 1.42; }
+    .education-date { color: var(--soft); font-family: "SFMono-Regular", Menlo, monospace; font-size: 6.2pt; }
+    .small-copy { margin-top: 0.65mm; color: var(--muted); font-size: 6.55pt; line-height: 1.4; }
+    .skill-line { margin-bottom: 0.75mm; color: var(--body); font-size: 6.8pt; line-height: 1.42; }
+    .skill-line:last-child { margin-bottom: 0; }
+    .skill-line strong { color: var(--accent-dark); }
+    @media screen { body { padding: 12mm 0; } .page { margin: 0 auto; box-shadow: 0 10mm 30mm rgba(25, 20, 22, 0.15); } }
+    @media print { html, body { background: #fff; } body { padding: 0; } .page { margin: 0; box-shadow: none; } a { border-bottom: 0; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="header">
+      <div>
+        <div class="kicker">Agent Effect Strategy · Consumer AI</div>
+        <div class="name-row"><h1>莫思意</h1><div class="target">Agent 策略产品运营</div></div>
+        <div class="contact">
+          <span>19290865729</span><span>aodomosiyi@foxmail.com</span><span>杭州</span>
+          <a href="https://profile.ericdocmic.top">profile.ericdocmic.top</a>
+          <a href="https://github.com/Echo-Smith">github.com/Echo-Smith</a>
+        </div>
+      </div>
+      <div class="photo-frame"><img class="photo" src="个人头像.jpg" alt="莫思意头像"></div>
+    </header>
+
+    <section class="intro" aria-label="个人概述">
+      <div class="intro-rail">
+        <div class="rail-label">ROLE FIT</div>
+        <div class="rail-title">效果策略<br>评测闭环<br>Badcase 修复</div>
+        <div class="rail-sub">把主观体验拆成可解释、可复核、可持续迭代的产品策略。</div>
+      </div>
+      <div>
+        <p class="intro-copy">具备近 2 年内容生态、平台分发与质量治理经验，个人发起并独立构建 AI 内容产品“笔润智谈”，完成效果标准、Prompt / Memory 策略、真实业务评测与 Web 交付。能把内容问题转为 Rubric 与硬失败，将 Badcase 归因到输入、检索、Prompt、Memory、工具、模型或交互，并依据 Holdout 与真实任务回放决定发布、暂缓或回滚。</p>
+        <div class="proof-strip">
+          <div class="proof"><strong>53</strong><span>名作者完成真实写作任务</span></div>
+          <div class="proof"><strong>≈70</strong><span>条 V2 完整任务样本</span></div>
+          <div class="proof"><strong>700+</strong><span>次多模型评测调用</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="resume-section" aria-labelledby="project-one">
+      <div class="section-heading"><h2 class="section-title" id="project-one"><span class="section-index">01</span>核心项目</h2><span class="section-note">AGENT STRATEGY · MEMORY · BADCASE</span></div>
+      <div class="resume-row">
+        <aside class="project-side">
+          <h3 class="project-title">笔润智谈<br>C 端 AI 写作 Agent</h3>
+          <div class="project-role">个人发起并独立构建<br>需求、效果策略、Agent 机制、评测与 Web 交付</div>
+          <div class="project-date">2026.03—至今</div>
+          <div class="project-links"><a href="https://luminbuddy2.ericdocmic.top">在线体验</a><a href="https://github.com/Echo-Smith/luminbuddy-writing-agent-v2">GitHub</a></div>
+          <div class="side-metrics">
+            <div class="side-metric"><strong>80</strong><span>组成对策略实验</span></div>
+            <div class="side-metric"><strong>20</strong><span>条真实 Trace Holdout</span></div>
+            <div class="side-metric"><strong>24</strong><span>条知识路由 Smoke</span></div>
+            <div class="side-metric"><strong>HOLD</strong><span>未达门槛暂缓发布</span></div>
+          </div>
+        </aside>
+        <ul class="strategy-list">
+          <li><span class="strategy-tag">效果标准</span><span class="strategy-copy">将任务符合、事实忠实、结构论证、风格一致和直接可用拆为五维 Rubric，把事实编造、来源越界和改变原意设为硬失败；用 20 条校准集、双模型盲评与业务仲裁迭代并冻结标准。</span></li>
+          <li><span class="strategy-tag">策略实验</span><span class="strategy-copy">完成 <strong>80 组成对实验</strong>，分别比较来源证据闸门和个人风格 Memory；开发集筛选、候选冻结后再跑 Holdout，最终保留来源闸门、关闭默认风格 Memory。</span></li>
+          <li><span class="strategy-tag">发布门禁</span><span class="strategy-copy">从线上 Trace 去重并冻结 <strong>20 条脱敏真实任务</strong>，不以合成样本补数；重放暴露请求失败与较高修改负担，因未达门槛暂缓发布，并按输入、检索、模型与工具继续归因修复。</span></li>
+          <li><span class="strategy-tag">线上观测</span><span class="strategy-copy">区分真实用户、Smoke 与 Replay，记录失败阶段、知识库路由、延迟及成本可用性；以隐私友好事件采集复制、下载、二次生成、继续编辑和显式反馈。</span></li>
+          <li><span class="strategy-tag">真实结果</span><span class="strategy-copy">2026 年 5—8 月，14 位作者借助产品完成 28 篇获栏目刊发稿件，单个用户最高使用 20 余次；累计覆盖 200+ 体验用户。</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="resume-section" aria-labelledby="project-two">
+      <div class="section-heading"><h2 class="section-title" id="project-two"><span class="section-index">02</span>评测实践</h2><span class="section-note">EVAL SET · MODEL COMPARISON · GUARDRAIL</span></div>
+      <div class="resume-row">
+        <aside class="project-side">
+          <h3 class="project-title">HearHer 听见妈妈<br>多模态 AI 音乐陪伴</h3>
+          <div class="project-role">腾讯音乐 AI Hackathon 两人团队<br>产品规划、AI 能力设计、模型评测与 PWA 交付</div>
+          <div class="project-date">2026.06—2026.07</div>
+          <div class="project-links"><a href="https://hearher.me">项目介绍</a><a href="https://ideas.qq.com/work/detail/nBwZmb2DYJ1Ly3FqYh">赛事页</a><a href="https://github.com/Echo-Smith/HearHer-PWA">GitHub</a></div>
+          <div class="side-metrics">
+            <div class="side-metric"><strong>177</strong><span>条音频</span></div>
+            <div class="side-metric"><strong>30</strong><span>条产品用例</span></div>
+            <div class="side-metric"><strong>4×4</strong><span>ASR / LLM 横评</span></div>
+            <div class="side-metric"><strong>0.40%</strong><span>当前集 CER</span></div>
+          </div>
+        </aside>
+        <ul class="strategy-list">
+          <li><span class="strategy-tag">评测设计</span><span class="strategy-copy">从否定词、风险词漏识别可能反转语义的产品风险出发，构建 177 条合成音频和 30 条产品用例，对比 4 款 ASR 与 4 款 LLM 的识别、指令遵循与产品表现，完成 700+ 次调用。</span></li>
+          <li><span class="strategy-tag">结论边界</span><span class="strategy-copy">当前测试集中 MiMo ASR 的 CER 为 0.40%，48 条否定词与 36 条风险词样本均完整保留；明确样本以合成音频为主，结果仅用于初步选型，避免把单次测试泛化为生产结论。</span></li>
+          <li><span class="strategy-tag">安全策略</span><span class="strategy-copy">将大出血、胸痛气促、胎动异常、自伤或伤害婴儿等输入定义为高风险，命中后停止普通推荐并转为就医或求助提示；LLM 仅负责状态理解与陪伴表达。项目从 200+ 份提案中入围 14 项决赛作品。</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="resume-section" aria-labelledby="experience">
+      <div class="section-heading"><h2 class="section-title" id="experience"><span class="section-index">03</span>工作经历</h2><span class="section-note">CONTENT QUALITY · DATA · DELIVERY</span></div>
+      <div class="resume-row">
+        <aside class="project-side">
+          <h3 class="project-title">杭州都市快报研学文化传播有限公司</h3>
+          <div class="project-role">内容运营<br>内容生态与平台运营</div>
+          <div class="project-date">2024.11—至今</div>
+        </aside>
+        <ul class="work-list">
+          <li><strong>内容质量与反馈：</strong>负责微博、今日头条、小红书等官方账号的内容适配、发布监测与反馈复盘；参与稿件、话题及评论反馈的分级处理，围绕事实准确性、平台规则和传播风险协同审核与修正。</li>
+          <li><strong>策略与数据：</strong>根据平台形态、传播节点和用户反馈调整选题、标题、表达与更新节奏；使用 Python / 飞书表格清洗多平台数据、建立话题分类和阶段看板，支持策略复盘。</li>
+          <li><strong>协作与验收：</strong>协调 30+ 本地 KOL / KOC，参与约 150 人素人号矩阵管理；参与内部 SaaS 上线前验收，提交 6 项分级问题并整理复现路径，协助开发团队约 30 分钟定位关键问题并完成验证。</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="bottom-grid">
+      <div class="bottom-column">
+        <h2 class="bottom-title">教育背景</h2>
+        <div class="education-main">齐鲁工业大学｜新媒体技术（工科·计算机大类）｜本科 <span class="education-date">2020.09—2024.06</span></div>
+        <div class="small-copy">机器学习与模式识别、人工智能与深度学习、智能媒体传播、移动软件开发</div>
+      </div>
+      <div class="bottom-column">
+        <h2 class="bottom-title">能力与工具</h2>
+        <div class="skill-line"><strong>策略：</strong>Prompt / Context、RAG、Memory、Function Calling、Multi-Agent、Human-in-the-loop、LLM-as-Judge 方法与 Badcase。</div>
+        <div class="skill-line"><strong>实现：</strong>Python、SQL / PostgreSQL、Go、TypeScript / React、REST API、WebSocket、Docker、Git；长期使用 Codex、Claude Code、Dify。</div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
