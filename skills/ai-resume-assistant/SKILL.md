@@ -222,6 +222,8 @@ Use:
 
 Do not force every bullet into this cadence. One clear short result line may be stronger than a synthetic “full loop.”
 
+When a result is mature enough, use the outcome–action–evidence check (`X by Y, demonstrated by Z`) to test whether the draft states the highest defensible outcome, the candidate's bounded contribution, and proof that supports the claim. Treat it as a completeness check, not a mandatory sentence pattern; preserve the user need, downgrade early-stage claims, and never infer causality. Read [references/writing-patterns.md](references/writing-patterns.md) for maturity-specific variants and guardrails.
+
 For architecture-heavy Agent, RAG, workflow, and platform projects, read [references/project-narrative.md](references/project-narrative.md).
 
 Before releasing any product or AI-product project, run [references/product-clarity-gate.md](references/product-clarity-gate.md). This gate is mandatory when the draft contains version labels, architecture terms, internal risk levels, vague product slogans, or reviewer feedback that the resume reads like development work.
