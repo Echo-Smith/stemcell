@@ -1,6 +1,6 @@
 # 第一轮交付与实验结论
 
-日期：2026-09-08。代码版本：0.2.0。结果是工程验证和一个模拟需求的真实接口试跑，尚不是用户价值验证。
+日期：2026-09-08。代码版本：0.2.0。**本项目仅作为 test / 实验原型，不适用于生产或自动决策。** 结果是工程验证和一个模拟需求的真实接口试跑，尚不是用户价值验证。
 
 ## 已交付
 
@@ -10,7 +10,7 @@
 - 分阶段调用/token/耗时记录，调用预算、失败用量记录、供应商拒绝时停止批量调用。
 - 十个有明确模拟标记的案例、匿名材料、空白人工记录表及报告命令。
 
-Python 3.12 环境中 47 项测试通过；Ruff 检查、格式检查和包构建通过。两个独立检查覆盖了真实模型接口和一个生成步骤的确定性反例。没有修改原始仓库分支或向远程推送。
+Python 3.12 环境中 47 项测试通过；Ruff 检查、格式检查和包构建通过。两个独立检查覆盖了真实模型接口和一个生成步骤的确定性反例。测试运行与部署、发布无关，不构成生产就绪证明。
 
 ## 实验范围
 
@@ -48,13 +48,13 @@ Python 3.12 环境中 47 项测试通过；Ruff 检查、格式检查和包构�
 
 可用它整理和比较方案，但关键步骤仍要检查。下一轮优先积累带确定性结果的约束反例，检验裁判能否识别“摘要承诺与实施步骤矛盾”。不要用更多角色或更漂亮的总分掩盖这个问题。
 
-用户尚未提供真实需求集。本轮没有把其他项目的内容擅自变成案例，也没有代填人工偏好。需要用有出处的真实需求替换模拟案例，再盲评取舍、修改量和最终采纳情况；总阅读时间也需另做随机分配实验才能评估节省量。
+本轮没有真实需求集，也没有人工偏好记录。需要用有出处的真实需求替换模拟案例，再盲评取舍、修改量和最终采纳情况；总阅读时间也需另做随机分配实验才能评估节省量。
 
-## 本机产物
+## 测试产物
 
-- [操作说明](/Users/marshecho/Codex/stemcell-review/implementation/README.md)
-- [正式接口试跑报告](/Users/marshecho/Codex/stemcell-review/experiments/live-pilot-final-20260908/REPORT.md)
-- [Stemcell 方案对比](/Users/marshecho/Codex/stemcell-review/experiments/live-pilot-final-20260908/stemcell-comparison.md)
-- [匿名候选材料](/Users/marshecho/Codex/stemcell-review/experiments/live-pilot-final-20260908/blind/notes-export.md)
-- [人工记录表](/Users/marshecho/Codex/stemcell-review/experiments/live-pilot-final-20260908/ratings.csv)
-- [十案例离线报告](/Users/marshecho/Codex/stemcell-review/experiments/offline-final-20260908/REPORT.md)
+- [操作说明](../../README.md)
+- [正式接口试跑报告](artifacts/live-pilot/REPORT.md)
+- [Stemcell 方案对比](artifacts/live-pilot/stemcell-comparison.md)
+- [匿名候选材料](artifacts/live-pilot/blind/notes-export.md)
+- [人工记录表](artifacts/live-pilot/ratings.csv)
+- [十案例离线报告](artifacts/offline/REPORT.md)

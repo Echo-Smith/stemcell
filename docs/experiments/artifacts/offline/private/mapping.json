@@ -1,0 +1,52 @@
+{
+  "notes-export": {
+    "A": "stemcell",
+    "B": "single_prompt",
+    "C": "sampling"
+  },
+  "feedback-inbox": {
+    "A": "sampling",
+    "B": "stemcell",
+    "C": "single_prompt"
+  },
+  "csv-import": {
+    "A": "stemcell",
+    "B": "sampling",
+    "C": "single_prompt"
+  },
+  "local-search": {
+    "A": "stemcell",
+    "B": "sampling",
+    "C": "single_prompt"
+  },
+  "release-notes": {
+    "A": "sampling",
+    "B": "stemcell",
+    "C": "single_prompt"
+  },
+  "booking-slots": {
+    "A": "sampling",
+    "B": "single_prompt",
+    "C": "stemcell"
+  },
+  "image-compress": {
+    "A": "sampling",
+    "B": "single_prompt",
+    "C": "stemcell"
+  },
+  "job-queue": {
+    "A": "sampling",
+    "B": "single_prompt",
+    "C": "stemcell"
+  },
+  "knowledge-links": {
+    "A": "stemcell",
+    "B": "single_prompt",
+    "C": "sampling"
+  },
+  "feature-flags": {
+    "A": "stemcell",
+    "B": "sampling",
+    "C": "single_prompt"
+  }
+}

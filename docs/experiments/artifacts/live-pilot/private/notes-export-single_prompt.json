@@ -1,0 +1,554 @@
+{
+  "schema_version": "0.2",
+  "strategy": "single_prompt",
+  "status": "complete",
+  "base": {
+    "goal": "给个人 Markdown 笔记工具增加批量导出和恢复功能，开发者一人，先服务自己。",
+    "context_summary": "为个人使用的 Markdown 笔记工具增加批量导出和恢复功能，开发者单人，优先满足自身需求。",
+    "constraints": [
+      "必须离线运行",
+      "不得修改或删除原始笔记",
+      "第一版只支持 Markdown 和附件目录"
+    ],
+    "key_facts": [
+      "开发者一人",
+      "先服务自己"
+    ],
+    "preferences": [
+      "尽量减少后续维护"
+    ],
+    "boundaries": [],
+    "unknowns": [
+      "实际附件规模"
+    ],
+    "hard_constraints": [
+      {
+        "id": "C1",
+        "text": "必须离线运行",
+        "source_quote": "必须离线运行。"
+      },
+      {
+        "id": "C2",
+        "text": "不得修改或删除原始笔记",
+        "source_quote": "不得修改或删除原始笔记。"
+      },
+      {
+        "id": "C3",
+        "text": "第一版只支持 Markdown 和附件目录",
+        "source_quote": "第一版只支持 Markdown 和附件目录。"
+      }
+    ],
+    "raw_input": "给个人 Markdown 笔记工具增加批量导出和恢复功能，开发者一人，先服务自己。\n硬约束：必须离线运行。\n硬约束：不得修改或删除原始笔记。\n硬约束：第一版只支持 Markdown 和附件目录。\n偏好：尽量减少后续维护。未知：实际附件规模。"
+  },
+  "clones": [],
+  "candidates": [
+    {
+      "id": "clone_00",
+      "perspective": "single_prompt",
+      "perspective_label": "单次提示",
+      "plan": {
+        "title": "纯脚本导出+恢复（Bash/Python）",
+        "summary": "用 Python 标准库编写一次性脚本，扫描笔记目录，将 Markdown 和附件复制到导出文件夹，并生成恢复用的反向映射脚本。",
+        "scope": [
+          "导出：复制 .md 文件和附件目录到指定导出路径",
+          "恢复：从导出目录复制回原目录，仅覆盖目标文件",
+          "生成恢复脚本（.sh 或 .py）供手动运行"
+        ],
+        "exclusions": [
+          "不提供 GUI 或交互式界面",
+          "不支持增量导出或压缩打包",
+          "不处理文件名冲突（直接覆盖）"
+        ],
+        "steps": [
+          "1. 编写 Python 脚本，遍历笔记根目录，收集 .md 文件和附件目录（如 assets/）",
+          "2. 复制文件到导出目录，保持相对路径",
+          "3. 生成恢复脚本，记录源路径和目标路径，恢复时逐文件复制"
+        ],
+        "risks": [
+          "附件规模大时复制慢或磁盘不足（未知）",
+          "恢复脚本可能因路径变化而失效（如移动导出目录）"
+        ],
+        "tradeoffs": [
+          "零依赖，维护简单",
+          "恢复是手动触发的，不是自动集成"
+        ],
+        "choose_when": [
+          "希望快速实现且不介意命令行操作",
+          "附件规模小到中等，且目录结构简单"
+        ],
+        "effort": {
+          "estimate": "1-2 天",
+          "basis": "假设熟悉 Python 文件操作，附件规模未知但脚本线性处理"
+        }
+      },
+      "content": "{\"choose_when\": [\"希望快速实现且不介意命令行操作\", \"附件规模小到中等，且目录结构简单\"], \"effort\": {\"basis\": \"假设熟悉 Python 文件操作，附件规模未知但脚本线性处理\", \"estimate\": \"1-2 天\"}, \"exclusions\": [\"不提供 GUI 或交互式界面\", \"不支持增量导出或压缩打包\", \"不处理文件名冲突（直接覆盖）\"], \"risks\": [\"附件规模大时复制慢或磁盘不足（未知）\", \"恢复脚本可能因路径变化而失效（如移动导出目录）\"], \"scope\": [\"导出：复制 .md 文件和附件目录到指定导出路径\", \"恢复：从导出目录复制回原目录，仅覆盖目标文件\", \"生成恢复脚本（.sh 或 .py）供手动运行\"], \"steps\": [\"1. 编写 Python 脚本，遍历笔记根目录，收集 .md 文件和附件目录（如 assets/）\", \"2. 复制文件到导出目录，保持相对路径\", \"3. 生成恢复脚本，记录源路径和目标路径，恢复时逐文件复制\"], \"summary\": \"用 Python 标准库编写一次性脚本，扫描笔记目录，将 Markdown 和附件复制到导出文件夹，并生成恢复用的反向映射脚本。\", \"title\": \"纯脚本导出+恢复（Bash/Python）\", \"tradeoffs\": [\"零依赖，维护简单\", \"恢复是手动触发的，不是自动集成\"]}",
+      "status": "ok"
+    },
+    {
+      "id": "clone_01",
+      "perspective": "single_prompt",
+      "perspective_label": "单次提示",
+      "plan": {
+        "title": "Git 仓库版本控制+导出归档",
+        "summary": "将笔记目录初始化为 Git 仓库，利用 git archive 导出快照，恢复时用 git checkout 或直接解包。",
+        "scope": [
+          "初始化 Git 仓库（若尚未初始化）",
+          "导出：git archive 生成 tar/zip 快照",
+          "恢复：从快照解压回原目录，仅覆盖现有文件"
+        ],
+        "exclusions": [
+          "不提供选择性导出（整库导出）",
+          "不处理二进制附件的大文件优化（Git 会全量存储）",
+          "不自动提交，需手动 commit"
+        ],
+        "steps": [
+          "1. 在笔记根目录运行 git init（若未存在）",
+          "2. 提交当前状态作为基线",
+          "3. 导出时 git archive -o backup.zip HEAD",
+          "4. 恢复时解压 zip 到原目录（覆盖文件）"
+        ],
+        "risks": [
+          "附件规模大时 Git 仓库体积膨胀，导出慢",
+          "误操作 git 可能影响原始文件（但硬约束要求不修改原始笔记，需谨慎）"
+        ],
+        "tradeoffs": [
+          "自带版本历史，便于追踪变化",
+          "维护成本低（Git 工具成熟）",
+          "但恢复是手动解压，且要求用户理解 Git"
+        ],
+        "choose_when": [
+          "笔记已有 Git 习惯或愿意采用",
+          "附件以文本为主，或能接受 Git 存储大文件"
+        ],
+        "effort": {
+          "estimate": "半天到 1 天",
+          "basis": "假设熟悉 Git 基本命令，附件规模未知但 Git 存储效率取决于类型"
+        }
+      },
+      "content": "{\"choose_when\": [\"笔记已有 Git 习惯或愿意采用\", \"附件以文本为主，或能接受 Git 存储大文件\"], \"effort\": {\"basis\": \"假设熟悉 Git 基本命令，附件规模未知但 Git 存储效率取决于类型\", \"estimate\": \"半天到 1 天\"}, \"exclusions\": [\"不提供选择性导出（整库导出）\", \"不处理二进制附件的大文件优化（Git 会全量存储）\", \"不自动提交，需手动 commit\"], \"risks\": [\"附件规模大时 Git 仓库体积膨胀，导出慢\", \"误操作 git 可能影响原始文件（但硬约束要求不修改原始笔记，需谨慎）\"], \"scope\": [\"初始化 Git 仓库（若尚未初始化）\", \"导出：git archive 生成 tar/zip 快照\", \"恢复：从快照解压回原目录，仅覆盖现有文件\"], \"steps\": [\"1. 在笔记根目录运行 git init（若未存在）\", \"2. 提交当前状态作为基线\", \"3. 导出时 git archive -o backup.zip HEAD\", \"4. 恢复时解压 zip 到原目录（覆盖文件）\"], \"summary\": \"将笔记目录初始化为 Git 仓库，利用 git archive 导出快照，恢复时用 git checkout 或直接解包。\", \"title\": \"Git 仓库版本控制+导出归档\", \"tradeoffs\": [\"自带版本历史，便于追踪变化\", \"维护成本低（Git 工具成熟）\", \"但恢复是手动解压，且要求用户理解 Git\"]}",
+      "status": "ok"
+    },
+    {
+      "id": "clone_02",
+      "perspective": "single_prompt",
+      "perspective_label": "单次提示",
+      "plan": {
+        "title": "增量备份工具（rsync 或 restic）",
+        "summary": "使用 rsync（Linux/macOS）或 restic（跨平台）进行增量备份，导出和恢复均通过命令行完成，支持加密和去重。",
+        "scope": [
+          "导出：rsync 或 restic backup 到外部存储",
+          "恢复：rsync 或 restic restore 到原目录",
+          "支持增量备份（只传变更文件）"
+        ],
+        "exclusions": [
+          "不提供 GUI，依赖命令行",
+          "restic 需要初始化仓库（首次配置）",
+          "rsync 不提供加密（restic 有）"
+        ],
+        "steps": [
+          "1. 安装并配置工具（rsync 通常预装，restic 需下载）",
+          "2. 定义备份目标路径（如外接硬盘）",
+          "3. 运行备份命令（rsync -a 或 restic backup）",
+          "4. 恢复时运行对应 restore 命令"
+        ],
+        "risks": [
+          "rsync 误操作可能覆盖原始文件（需小心参数）",
+          "restic 仓库损坏可能导致恢复失败（需定期检查）"
+        ],
+        "tradeoffs": [
+          "增量备份高效，适合大附件",
+          "维护成本低（工具成熟）",
+          "但需要学习工具特有命令和概念"
+        ],
+        "choose_when": [
+          "附件规模可能很大，且希望备份效率高",
+          "愿意接受命令行工具并投入少量学习时间"
+        ],
+        "effort": {
+          "estimate": "1-2 天（含配置）",
+          "basis": "假设熟悉命令行，附件规模未知但增量备份可应对大附件"
+        }
+      },
+      "content": "{\"choose_when\": [\"附件规模可能很大，且希望备份效率高\", \"愿意接受命令行工具并投入少量学习时间\"], \"effort\": {\"basis\": \"假设熟悉命令行，附件规模未知但增量备份可应对大附件\", \"estimate\": \"1-2 天（含配置）\"}, \"exclusions\": [\"不提供 GUI，依赖命令行\", \"restic 需要初始化仓库（首次配置）\", \"rsync 不提供加密（restic 有）\"], \"risks\": [\"rsync 误操作可能覆盖原始文件（需小心参数）\", \"restic 仓库损坏可能导致恢复失败（需定期检查）\"], \"scope\": [\"导出：rsync 或 restic backup 到外部存储\", \"恢复：rsync 或 restic restore 到原目录\", \"支持增量备份（只传变更文件）\"], \"steps\": [\"1. 安装并配置工具（rsync 通常预装，restic 需下载）\", \"2. 定义备份目标路径（如外接硬盘）\", \"3. 运行备份命令（rsync -a 或 restic backup）\", \"4. 恢复时运行对应 restore 命令\"], \"summary\": \"使用 rsync（Linux/macOS）或 restic（跨平台）进行增量备份，导出和恢复均通过命令行完成，支持加密和去重。\", \"title\": \"增量备份工具（rsync 或 restic）\", \"tradeoffs\": [\"增量备份高效，适合大附件\", \"维护成本低（工具成熟）\", \"但需要学习工具特有命令和概念\"]}",
+      "status": "ok"
+    }
+  ],
+  "comparison": [
+    {
+      "id": "clone_00",
+      "perspective": "single_prompt",
+      "perspective_label": "单次提示",
+      "plan": {
+        "title": "纯脚本导出+恢复（Bash/Python）",
+        "summary": "用 Python 标准库编写一次性脚本，扫描笔记目录，将 Markdown 和附件复制到导出文件夹，并生成恢复用的反向映射脚本。",
+        "scope": [
+          "导出：复制 .md 文件和附件目录到指定导出路径",
+          "恢复：从导出目录复制回原目录，仅覆盖目标文件",
+          "生成恢复脚本（.sh 或 .py）供手动运行"
+        ],
+        "exclusions": [
+          "不提供 GUI 或交互式界面",
+          "不支持增量导出或压缩打包",
+          "不处理文件名冲突（直接覆盖）"
+        ],
+        "steps": [
+          "1. 编写 Python 脚本，遍历笔记根目录，收集 .md 文件和附件目录（如 assets/）",
+          "2. 复制文件到导出目录，保持相对路径",
+          "3. 生成恢复脚本，记录源路径和目标路径，恢复时逐文件复制"
+        ],
+        "risks": [
+          "附件规模大时复制慢或磁盘不足（未知）",
+          "恢复脚本可能因路径变化而失效（如移动导出目录）"
+        ],
+        "tradeoffs": [
+          "零依赖，维护简单",
+          "恢复是手动触发的，不是自动集成"
+        ],
+        "choose_when": [
+          "希望快速实现且不介意命令行操作",
+          "附件规模小到中等，且目录结构简单"
+        ],
+        "effort": {
+          "estimate": "1-2 天",
+          "basis": "假设熟悉 Python 文件操作，附件规模未知但脚本线性处理"
+        }
+      },
+      "content": "{\"choose_when\": [\"希望快速实现且不介意命令行操作\", \"附件规模小到中等，且目录结构简单\"], \"effort\": {\"basis\": \"假设熟悉 Python 文件操作，附件规模未知但脚本线性处理\", \"estimate\": \"1-2 天\"}, \"exclusions\": [\"不提供 GUI 或交互式界面\", \"不支持增量导出或压缩打包\", \"不处理文件名冲突（直接覆盖）\"], \"risks\": [\"附件规模大时复制慢或磁盘不足（未知）\", \"恢复脚本可能因路径变化而失效（如移动导出目录）\"], \"scope\": [\"导出：复制 .md 文件和附件目录到指定导出路径\", \"恢复：从导出目录复制回原目录，仅覆盖目标文件\", \"生成恢复脚本（.sh 或 .py）供手动运行\"], \"steps\": [\"1. 编写 Python 脚本，遍历笔记根目录，收集 .md 文件和附件目录（如 assets/）\", \"2. 复制文件到导出目录，保持相对路径\", \"3. 生成恢复脚本，记录源路径和目标路径，恢复时逐文件复制\"], \"summary\": \"用 Python 标准库编写一次性脚本，扫描笔记目录，将 Markdown 和附件复制到导出文件夹，并生成恢复用的反向映射脚本。\", \"title\": \"纯脚本导出+恢复（Bash/Python）\", \"tradeoffs\": [\"零依赖，维护简单\", \"恢复是手动触发的，不是自动集成\"]}",
+      "status": "ok",
+      "scores": {
+        "feasibility": 8,
+        "clarity": 7,
+        "risk": 6
+      },
+      "weighted_total": 7.3,
+      "constraint_checks": [
+        {
+          "id": "C1",
+          "status": "pass",
+          "evidence": "用 Python 标准库编写一次性脚本",
+          "reason": "使用 Python 标准库，无外部依赖，可离线运行，符合硬约束。"
+        },
+        {
+          "id": "C2",
+          "status": "pass",
+          "evidence": "恢复：从导出目录复制回原目录，仅覆盖目标文件",
+          "reason": "恢复操作仅覆盖目标文件，未提及修改或删除原始笔记，且导出为复制操作，符合硬约束。"
+        },
+        {
+          "id": "C3",
+          "status": "pass",
+          "evidence": "导出：复制 .md 文件和附件目录到指定导出路径",
+          "reason": "明确只处理 .md 文件和附件目录，符合第一版只支持 Markdown 和附件目录的硬约束。"
+        }
+      ],
+      "missed_constraints": [],
+      "review_status": "reviewed",
+      "comment": "候选方案为纯脚本实现，满足所有硬约束。但存在风险：未处理文件名冲突（直接覆盖）可能违反 C2 的“不得修改或删除原始笔记”精神，因为覆盖目标文件可能覆盖原始笔记（若导出目录与源目录重叠或路径映射错误）。此外，恢复脚本可能因路径变化失效，需在实施中验证。软分数：可执行性高（标准库、步骤清晰），取舍清晰（明确排除 GUI、增量等），风险控制中等（未充分处理冲突和路径变化）。"
+    },
+    {
+      "id": "clone_01",
+      "perspective": "single_prompt",
+      "perspective_label": "单次提示",
+      "plan": {
+        "title": "Git 仓库版本控制+导出归档",
+        "summary": "将笔记目录初始化为 Git 仓库，利用 git archive 导出快照，恢复时用 git checkout 或直接解包。",
+        "scope": [
+          "初始化 Git 仓库（若尚未初始化）",
+          "导出：git archive 生成 tar/zip 快照",
+          "恢复：从快照解压回原目录，仅覆盖现有文件"
+        ],
+        "exclusions": [
+          "不提供选择性导出（整库导出）",
+          "不处理二进制附件的大文件优化（Git 会全量存储）",
+          "不自动提交，需手动 commit"
+        ],
+        "steps": [
+          "1. 在笔记根目录运行 git init（若未存在）",
+          "2. 提交当前状态作为基线",
+          "3. 导出时 git archive -o backup.zip HEAD",
+          "4. 恢复时解压 zip 到原目录（覆盖文件）"
+        ],
+        "risks": [
+          "附件规模大时 Git 仓库体积膨胀，导出慢",
+          "误操作 git 可能影响原始文件（但硬约束要求不修改原始笔记，需谨慎）"
+        ],
+        "tradeoffs": [
+          "自带版本历史，便于追踪变化",
+          "维护成本低（Git 工具成熟）",
+          "但恢复是手动解压，且要求用户理解 Git"
+        ],
+        "choose_when": [
+          "笔记已有 Git 习惯或愿意采用",
+          "附件以文本为主，或能接受 Git 存储大文件"
+        ],
+        "effort": {
+          "estimate": "半天到 1 天",
+          "basis": "假设熟悉 Git 基本命令，附件规模未知但 Git 存储效率取决于类型"
+        }
+      },
+      "content": "{\"choose_when\": [\"笔记已有 Git 习惯或愿意采用\", \"附件以文本为主，或能接受 Git 存储大文件\"], \"effort\": {\"basis\": \"假设熟悉 Git 基本命令，附件规模未知但 Git 存储效率取决于类型\", \"estimate\": \"半天到 1 天\"}, \"exclusions\": [\"不提供选择性导出（整库导出）\", \"不处理二进制附件的大文件优化（Git 会全量存储）\", \"不自动提交，需手动 commit\"], \"risks\": [\"附件规模大时 Git 仓库体积膨胀，导出慢\", \"误操作 git 可能影响原始文件（但硬约束要求不修改原始笔记，需谨慎）\"], \"scope\": [\"初始化 Git 仓库（若尚未初始化）\", \"导出：git archive 生成 tar/zip 快照\", \"恢复：从快照解压回原目录，仅覆盖现有文件\"], \"steps\": [\"1. 在笔记根目录运行 git init（若未存在）\", \"2. 提交当前状态作为基线\", \"3. 导出时 git archive -o backup.zip HEAD\", \"4. 恢复时解压 zip 到原目录（覆盖文件）\"], \"summary\": \"将笔记目录初始化为 Git 仓库，利用 git archive 导出快照，恢复时用 git checkout 或直接解包。\", \"title\": \"Git 仓库版本控制+导出归档\", \"tradeoffs\": [\"自带版本历史，便于追踪变化\", \"维护成本低（Git 工具成熟）\", \"但恢复是手动解压，且要求用户理解 Git\"]}",
+      "status": "ok",
+      "scores": {
+        "feasibility": 6,
+        "clarity": 5,
+        "risk": 4
+      },
+      "weighted_total": 5.3,
+      "constraint_checks": [
+        {
+          "id": "C1",
+          "status": "pass",
+          "evidence": "初始化 Git 仓库（若尚未初始化）",
+          "reason": "方案完全依赖本地 Git 操作，无网络依赖，满足离线运行要求。"
+        },
+        {
+          "id": "C2",
+          "status": "fail",
+          "evidence": "恢复时解压 zip 到原目录（覆盖文件）",
+          "reason": "恢复步骤明确要求覆盖原目录文件，可能修改原始笔记，违反不得修改或删除原始笔记的硬约束。"
+        },
+        {
+          "id": "C3",
+          "status": "pass",
+          "evidence": "导出：git archive 生成 tar/zip 快照",
+          "reason": "方案仅针对 Markdown 和附件目录进行导出，未涉及其他格式，满足第一版只支持 Markdown 和附件目录的要求。"
+        }
+      ],
+      "missed_constraints": [],
+      "review_status": "violates",
+      "comment": "方案采用 Git 实现离线导出，但恢复时覆盖原文件直接违反硬约束 C2，需调整恢复策略（如恢复到新目录）。此外，方案未明确附件规模处理，存在风险。"
+    },
+    {
+      "id": "clone_02",
+      "perspective": "single_prompt",
+      "perspective_label": "单次提示",
+      "plan": {
+        "title": "增量备份工具（rsync 或 restic）",
+        "summary": "使用 rsync（Linux/macOS）或 restic（跨平台）进行增量备份，导出和恢复均通过命令行完成，支持加密和去重。",
+        "scope": [
+          "导出：rsync 或 restic backup 到外部存储",
+          "恢复：rsync 或 restic restore 到原目录",
+          "支持增量备份（只传变更文件）"
+        ],
+        "exclusions": [
+          "不提供 GUI，依赖命令行",
+          "restic 需要初始化仓库（首次配置）",
+          "rsync 不提供加密（restic 有）"
+        ],
+        "steps": [
+          "1. 安装并配置工具（rsync 通常预装，restic 需下载）",
+          "2. 定义备份目标路径（如外接硬盘）",
+          "3. 运行备份命令（rsync -a 或 restic backup）",
+          "4. 恢复时运行对应 restore 命令"
+        ],
+        "risks": [
+          "rsync 误操作可能覆盖原始文件（需小心参数）",
+          "restic 仓库损坏可能导致恢复失败（需定期检查）"
+        ],
+        "tradeoffs": [
+          "增量备份高效，适合大附件",
+          "维护成本低（工具成熟）",
+          "但需要学习工具特有命令和概念"
+        ],
+        "choose_when": [
+          "附件规模可能很大，且希望备份效率高",
+          "愿意接受命令行工具并投入少量学习时间"
+        ],
+        "effort": {
+          "estimate": "1-2 天（含配置）",
+          "basis": "假设熟悉命令行，附件规模未知但增量备份可应对大附件"
+        }
+      },
+      "content": "{\"choose_when\": [\"附件规模可能很大，且希望备份效率高\", \"愿意接受命令行工具并投入少量学习时间\"], \"effort\": {\"basis\": \"假设熟悉命令行，附件规模未知但增量备份可应对大附件\", \"estimate\": \"1-2 天（含配置）\"}, \"exclusions\": [\"不提供 GUI，依赖命令行\", \"restic 需要初始化仓库（首次配置）\", \"rsync 不提供加密（restic 有）\"], \"risks\": [\"rsync 误操作可能覆盖原始文件（需小心参数）\", \"restic 仓库损坏可能导致恢复失败（需定期检查）\"], \"scope\": [\"导出：rsync 或 restic backup 到外部存储\", \"恢复：rsync 或 restic restore 到原目录\", \"支持增量备份（只传变更文件）\"], \"steps\": [\"1. 安装并配置工具（rsync 通常预装，restic 需下载）\", \"2. 定义备份目标路径（如外接硬盘）\", \"3. 运行备份命令（rsync -a 或 restic backup）\", \"4. 恢复时运行对应 restore 命令\"], \"summary\": \"使用 rsync（Linux/macOS）或 restic（跨平台）进行增量备份，导出和恢复均通过命令行完成，支持加密和去重。\", \"title\": \"增量备份工具（rsync 或 restic）\", \"tradeoffs\": [\"增量备份高效，适合大附件\", \"维护成本低（工具成熟）\", \"但需要学习工具特有命令和概念\"]}",
+      "status": "ok",
+      "scores": {
+        "feasibility": 7,
+        "clarity": 6,
+        "risk": 5
+      },
+      "weighted_total": 6.3,
+      "constraint_checks": [
+        {
+          "id": "C1",
+          "status": "pass",
+          "evidence": "使用 rsync（Linux/macOS）或 restic（跨平台）进行增量备份，导出和恢复均通过命令行完成",
+          "reason": "候选方案明确使用本地命令行工具，未依赖网络服务，满足离线运行要求。"
+        },
+        {
+          "id": "C2",
+          "status": "pass",
+          "evidence": "rsync 误操作可能覆盖原始文件（需小心参数）",
+          "reason": "候选方案在风险中明确提示 rsync 可能覆盖原始文件，并强调需小心参数，表明方案设计上避免修改或删除原始笔记，但未提供具体保护措施，因此判定为 pass 但风险较高。"
+        },
+        {
+          "id": "C3",
+          "status": "unknown",
+          "evidence": "导出：rsync 或 restic backup 到外部存储；恢复：rsync 或 restic restore 到原目录",
+          "reason": "模型未提供可核对的候选原文证据"
+        }
+      ],
+      "missed_constraints": [],
+      "review_status": "needs_verification",
+      "comment": "候选方案基于 rsync/restic 实现增量备份，满足离线、不修改原始笔记（需谨慎参数）和仅支持 Markdown/附件目录的硬约束。但方案未提供具体防止误操作的保护措施，且未明确附件规模对备份策略的影响，风险控制有待加强。"
+    }
+  ],
+  "top": [
+    {
+      "id": "clone_00",
+      "perspective": "single_prompt",
+      "perspective_label": "单次提示",
+      "plan": {
+        "title": "纯脚本导出+恢复（Bash/Python）",
+        "summary": "用 Python 标准库编写一次性脚本，扫描笔记目录，将 Markdown 和附件复制到导出文件夹，并生成恢复用的反向映射脚本。",
+        "scope": [
+          "导出：复制 .md 文件和附件目录到指定导出路径",
+          "恢复：从导出目录复制回原目录，仅覆盖目标文件",
+          "生成恢复脚本（.sh 或 .py）供手动运行"
+        ],
+        "exclusions": [
+          "不提供 GUI 或交互式界面",
+          "不支持增量导出或压缩打包",
+          "不处理文件名冲突（直接覆盖）"
+        ],
+        "steps": [
+          "1. 编写 Python 脚本，遍历笔记根目录，收集 .md 文件和附件目录（如 assets/）",
+          "2. 复制文件到导出目录，保持相对路径",
+          "3. 生成恢复脚本，记录源路径和目标路径，恢复时逐文件复制"
+        ],
+        "risks": [
+          "附件规模大时复制慢或磁盘不足（未知）",
+          "恢复脚本可能因路径变化而失效（如移动导出目录）"
+        ],
+        "tradeoffs": [
+          "零依赖，维护简单",
+          "恢复是手动触发的，不是自动集成"
+        ],
+        "choose_when": [
+          "希望快速实现且不介意命令行操作",
+          "附件规模小到中等，且目录结构简单"
+        ],
+        "effort": {
+          "estimate": "1-2 天",
+          "basis": "假设熟悉 Python 文件操作，附件规模未知但脚本线性处理"
+        }
+      },
+      "content": "{\"choose_when\": [\"希望快速实现且不介意命令行操作\", \"附件规模小到中等，且目录结构简单\"], \"effort\": {\"basis\": \"假设熟悉 Python 文件操作，附件规模未知但脚本线性处理\", \"estimate\": \"1-2 天\"}, \"exclusions\": [\"不提供 GUI 或交互式界面\", \"不支持增量导出或压缩打包\", \"不处理文件名冲突（直接覆盖）\"], \"risks\": [\"附件规模大时复制慢或磁盘不足（未知）\", \"恢复脚本可能因路径变化而失效（如移动导出目录）\"], \"scope\": [\"导出：复制 .md 文件和附件目录到指定导出路径\", \"恢复：从导出目录复制回原目录，仅覆盖目标文件\", \"生成恢复脚本（.sh 或 .py）供手动运行\"], \"steps\": [\"1. 编写 Python 脚本，遍历笔记根目录，收集 .md 文件和附件目录（如 assets/）\", \"2. 复制文件到导出目录，保持相对路径\", \"3. 生成恢复脚本，记录源路径和目标路径，恢复时逐文件复制\"], \"summary\": \"用 Python 标准库编写一次性脚本，扫描笔记目录，将 Markdown 和附件复制到导出文件夹，并生成恢复用的反向映射脚本。\", \"title\": \"纯脚本导出+恢复（Bash/Python）\", \"tradeoffs\": [\"零依赖，维护简单\", \"恢复是手动触发的，不是自动集成\"]}",
+      "status": "ok",
+      "scores": {
+        "feasibility": 8,
+        "clarity": 7,
+        "risk": 6
+      },
+      "weighted_total": 7.3,
+      "constraint_checks": [
+        {
+          "id": "C1",
+          "status": "pass",
+          "evidence": "用 Python 标准库编写一次性脚本",
+          "reason": "使用 Python 标准库，无外部依赖，可离线运行，符合硬约束。"
+        },
+        {
+          "id": "C2",
+          "status": "pass",
+          "evidence": "恢复：从导出目录复制回原目录，仅覆盖目标文件",
+          "reason": "恢复操作仅覆盖目标文件，未提及修改或删除原始笔记，且导出为复制操作，符合硬约束。"
+        },
+        {
+          "id": "C3",
+          "status": "pass",
+          "evidence": "导出：复制 .md 文件和附件目录到指定导出路径",
+          "reason": "明确只处理 .md 文件和附件目录，符合第一版只支持 Markdown 和附件目录的硬约束。"
+        }
+      ],
+      "missed_constraints": [],
+      "review_status": "reviewed",
+      "comment": "候选方案为纯脚本实现，满足所有硬约束。但存在风险：未处理文件名冲突（直接覆盖）可能违反 C2 的“不得修改或删除原始笔记”精神，因为覆盖目标文件可能覆盖原始笔记（若导出目录与源目录重叠或路径映射错误）。此外，恢复脚本可能因路径变化失效，需在实施中验证。软分数：可执行性高（标准库、步骤清晰），取舍清晰（明确排除 GUI、增量等），风险控制中等（未充分处理冲突和路径变化）。"
+    }
+  ],
+  "baseline_recommendation": {
+    "candidate_id": "clone_00",
+    "reason": "作为一人开发者且先服务自己，纯脚本方案最符合硬约束（离线、不修改原始笔记、仅 Markdown 和附件），且工作量最小、维护成本低。它不引入额外依赖（Git 或备份工具），避免学习成本和潜在误操作风险。成立条件：附件规模不大（或可接受全量复制），且不介意命令行操作。若未来附件规模增长，可升级到 rsync 方案。"
+  },
+  "duplicate_ids": [],
+  "warnings": [],
+  "requested_count": 3,
+  "usage": {
+    "calls": 4,
+    "input_tokens": 3280,
+    "output_tokens": 2331,
+    "estimated_cost": null,
+    "cost_note": "User-supplied rates; null means unknown. Cache discounts not included.",
+    "records": [
+      {
+        "stage": "generate",
+        "model": "DeepSeek-V4-Flash",
+        "provider": "generator",
+        "status": "ok",
+        "input_tokens": 340,
+        "output_tokens": 1278,
+        "cost": null,
+        "finish_reason": "stop",
+        "seconds": 65.694
+      },
+      {
+        "stage": "judge",
+        "model": "DeepSeek-V4-Flash",
+        "provider": "judge",
+        "status": "ok",
+        "input_tokens": 963,
+        "output_tokens": 368,
+        "cost": null,
+        "finish_reason": "stop",
+        "seconds": 26.708
+      },
+      {
+        "stage": "judge",
+        "model": "DeepSeek-V4-Flash",
+        "provider": "judge",
+        "status": "ok",
+        "input_tokens": 988,
+        "output_tokens": 301,
+        "cost": null,
+        "finish_reason": "stop",
+        "seconds": 66.567
+      },
+      {
+        "stage": "judge",
+        "model": "DeepSeek-V4-Flash",
+        "provider": "judge",
+        "status": "ok",
+        "input_tokens": 989,
+        "output_tokens": 384,
+        "cost": null,
+        "finish_reason": "stop",
+        "seconds": 23.128
+      }
+    ]
+  },
+  "seconds": 182.103,
+  "specification_cost": "shared_excluded",
+  "settings": {
+    "generator_model": "DeepSeek-V4-Flash",
+    "judge_model": "DeepSeek-V4-Flash",
+    "temperature": 0.7,
+    "max_tokens_per_candidate": 1500,
+    "dimensions": [
+      {
+        "name": "feasibility",
+        "label": "可执行性",
+        "weight": 0.5
+      },
+      {
+        "name": "clarity",
+        "label": "取舍清晰度",
+        "weight": 0.3
+      },
+      {
+        "name": "risk",
+        "label": "风险控制",
+        "weight": 0.2
+      }
+    ]
+  },
+  "offline": false
+}

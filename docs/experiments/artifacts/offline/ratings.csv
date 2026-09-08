@@ -1,0 +1,11 @@
+case_id,preferred_bundle,reading_seconds,constraint_misses,meaningful_routes,edits_needed,adopted_bundle,notes
+notes-export,,,,,,,
+feedback-inbox,,,,,,,
+csv-import,,,,,,,
+local-search,,,,,,,
+release-notes,,,,,,,
+booking-slots,,,,,,,
+image-compress,,,,,,,
+job-queue,,,,,,,
+knowledge-links,,,,,,,
+feature-flags,,,,,,,

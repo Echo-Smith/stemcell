@@ -33,6 +33,7 @@ config.yaml
 output/
 *.json
 !examples/*.json
+!docs/experiments/artifacts/**/*.json
 
 # IDE
 .vscode/
