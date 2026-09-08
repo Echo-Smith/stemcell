@@ -1,0 +1,13 @@
+{
+  "id": "git-restore-working-tree",
+  "kind": "deterministic_counterexample",
+  "source": "2026-09-08 live notes-export / sampling / clone_01; synthetic input, real model output",
+  "hard_constraint": "不得修改或删除原始笔记。",
+  "candidate_claim": "通过分支或标签检出实现恢复，不修改原始笔记；在新分支上恢复，不影响当前工作区。",
+  "candidate_operation": "git checkout -b restore-<tag> <tag>",
+  "model_judgment": "pass",
+  "deterministic_observation": "In a temporary repository with different historical file versions, this operation changes the working file to the earlier version.",
+  "expected_constraint_status": "fail",
+  "reproduction": "python docs/experiments/reproduce_git_restore.py",
+  "scope": "One counterexample. Not a measured false-pass rate, not a human preference result."
+}

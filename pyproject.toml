@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "stemcell"
-version = "0.1.0"
-description = "Reset-Clone-Differentiate-Quality four-stage Agent pipeline MVP"
+version = "0.2.0"
+description = "Source-grounded decision comparisons and controlled generation benchmarks"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
@@ -18,6 +18,16 @@ dependencies = [
 
 [project.scripts]
 stemcell = "stemcell.cli:main"
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.9"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "B"]
 
 [tool.setuptools.packages.find]
 include = ["stemcell*"]

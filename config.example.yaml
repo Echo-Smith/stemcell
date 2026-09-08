@@ -1,38 +1,38 @@
-# LLM 配置
+# 不填入密钥。通过环境变量或 --env-file 读取现有配置。
 llm:
-  provider: openai          # openai / anthropic / 兼容OpenAI协议的自定义端点
-  api_key: "your-api-key-here"
-  base_url: ""              # 自定义端点，留空用默认
-  model: "gpt-4o-mini"      # 分化生成用的模型
-  reset_model: "gpt-4o-mini" # 重置提炼用的模型
-  quality_model: "gpt-4o-mini" # 质控打分用的模型
-  temperature: 0.7
-  max_tokens: 2048
+  api_key_env: OPENAI_API_KEY
+  base_url_env: OPENAI_BASE_URL
+  model_env: OPENAI_MODEL
+  model: gpt-4o-mini     # 兼容原项目的回退值；建议通过环境变量明确指定
+  reset_model: null     # null 使用生成模型
+  quality_model: null   # 未启用独立 judge 时，可在这里覆盖评审模型
+  temperature: 0.7      # 不支持 temperature 的模型设为 null
+  max_tokens: 2500      # 单候选输出上限；单次提示生成 N 个候选时乘 N
+  token_parameter: max_tokens  # 可选 max_completion_tokens
   timeout: 60
 
-# 流水线配置
-pipeline:
-  default_perspectives:
-    - conservative      # 保守稳健视角
-    - engineering       # 工程落地视角
-    - creative          # 激进创新视角
-    - risk              # 风险审计视角
-  default_count: 8      # 默认生成候选数量
-  default_top: 4        # 默认输出Top-N
-  max_concurrent: 6     # 最大并发数
+# 独立评审接口可选；启用后需配置对应三个环境变量。
+judge:
+  enabled: false
+  api_key_env: JUDGE_API_KEY
+  base_url_env: JUDGE_BASE_URL
+  model_env: JUDGE_MODEL
 
-# 质控维度
+pipeline:
+  default_perspectives: [fastest, maintenance, growth]
+  default_count: 3
+  default_top: 3
+  max_concurrent: 3
+  max_calls: 200         # 10 个案例的三组对照最多 170 次，无自动重试
+  max_input_chars: 30000
+
 quality:
+  max_concurrent: 3
   dimensions:
-    - name: feasibility
-      label: 可行性
-      weight: 0.3
-    - name: creativity
-      label: 创新性
-      weight: 0.25
-    - name: completeness
-      label: 完整性
-      weight: 0.25
-    - name: risk
-      label: 风险控制
-      weight: 0.2
+    - {name: feasibility, label: 可执行性, weight: 0.5}
+    - {name: clarity, label: 取舍清晰度, weight: 0.3}
+    - {name: risk, label: 风险控制, weight: 0.2}
+
+# 用户提供、同币种的每百万 token 单价。未配置就显示费用未知。
+# 键为 provider/model；同一客户端评审使用 generator 前缀，独立评审使用 judge 前缀。
+pricing: {}

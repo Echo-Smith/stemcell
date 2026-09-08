@@ -1,8 +1,6 @@
 """Clone 模块的单元测试（不依赖 LLM）。"""
 
-import pytest
-
-from stemcell.modules.clone import CloneModule, PERSPECTIVES
+from stemcell.modules.clone import PERSPECTIVES, CloneModule
 
 
 def test_clone_basic():
@@ -24,7 +22,14 @@ def test_clone_count_more_than_perspectives():
 
 
 def test_clone_format_context():
-    base = {"goal": "目标", "constraints": ["c1"], "key_facts": ["f1"], "preferences": ["p1"], "boundaries": ["b1"], "context_summary": "摘要"}
+    base = {
+        "goal": "目标",
+        "constraints": ["c1"],
+        "key_facts": ["f1"],
+        "preferences": ["p1"],
+        "boundaries": ["b1"],
+        "context_summary": "摘要",
+    }
     clone = {
         "id": "clone_00",
         "perspective": "conservative",
@@ -39,6 +44,6 @@ def test_clone_format_context():
 
 
 def test_all_perspectives_have_required_keys():
-    for key, meta in PERSPECTIVES.items():
+    for meta in PERSPECTIVES.values():
         assert "label" in meta
         assert "prefix" in meta

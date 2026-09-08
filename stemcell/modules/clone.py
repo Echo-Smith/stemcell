@@ -5,8 +5,22 @@ from __future__ import annotations
 import json
 from typing import Any
 
+from ..llm import positive_int
+
 # 预设视角及其 prompt 前缀
 PERSPECTIVES: dict[str, dict[str, str]] = {
+    "fastest": {
+        "label": "最快验证",
+        "prefix": "在所有硬约束内，优先缩短首次验证时间；明确可延后的能力和手工替代环节。",
+    },
+    "maintenance": {
+        "label": "最低维护成本",
+        "prefix": "在所有硬约束内，优先减少长期维护、依赖与故障处理工作；说明牺牲的速度或灵活性。",
+    },
+    "growth": {
+        "label": "支持长期扩展",
+        "prefix": "在所有硬约束内，为需求中的增长预留清晰迁移路径；说明额外工作，不得无依据过度设计。",
+    },
     "conservative": {
         "label": "保守稳健",
         "prefix": "请以保守稳健的视角思考，优先考虑低风险、可验证、渐进式的方案，避免激进创新。",
@@ -58,8 +72,15 @@ class CloneModule:
 
         每个副本包含：底座信息 + 视角标签 + 视角prompt前缀。
         """
-        perspectives = perspectives or self.config.get("default_perspectives", ["conservative", "engineering", "creative", "risk"])
-        count = count or len(perspectives)
+        perspectives = (
+            perspectives
+            if perspectives is not None
+            else self.config.get("default_perspectives", ["fastest", "maintenance", "growth"])
+        )
+        if not perspectives or any(not isinstance(p, str) or not p.strip() for p in perspectives):
+            raise ValueError("perspectives must contain non-empty labels")
+        perspectives = [p.strip() for p in perspectives]
+        count = len(perspectives) if count is None else positive_int(count, "count")
 
         # 如果 count 大于 perspectives 数量，循环复用视角
         selected = []
@@ -95,4 +116,6 @@ class CloneModule:
             f"偏好：{'; '.join(base.get('preferences', []))}\n"
             f"边界：{'; '.join(base.get('boundaries', []))}\n"
             f"背景：{base.get('context_summary', '')}\n"
+            f"带原文出处的硬约束：{json.dumps(base.get('hard_constraints', []), ensure_ascii=False)}\n"
+            f"待确认：{'; '.join(base.get('unknowns', []))}\n"
         )

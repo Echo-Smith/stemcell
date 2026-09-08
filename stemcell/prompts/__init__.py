@@ -1,3 +1,1 @@
-# prompts 包
-
-各模块的提示词模板。当前模板直接硬编码在各模块中，此目录预留用于后续外部化模板管理。
+"""Prompts are colocated with the modules that validate their responses."""
